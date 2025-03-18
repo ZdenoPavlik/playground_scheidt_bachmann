@@ -1,0 +1,14 @@
+#Fetch source code and build libraries. 
+
+sudo apt install libgtest-dev libgmock-dev
+
+cd /usr/src/gtest
+sudo cmake .
+sudo make
+sudo cp lib/*.a /usr/lib
+
+cd /usr/src/gmock
+sudo cmake .
+sudo make
+sudo cp lib/*.a /usr/lib
+

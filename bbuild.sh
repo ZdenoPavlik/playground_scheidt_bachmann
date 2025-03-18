@@ -18,7 +18,7 @@ else
 fi
 
 cd build
-make -j 16
+make -j
 
 echo '************************************'
 echo '******          Done          ******'
