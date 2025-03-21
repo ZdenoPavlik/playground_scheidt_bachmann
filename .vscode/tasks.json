@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "buildProject",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "command": "make",
+            "args": [
+                "-j"
+            ],
+            "dependsOn": "cleanScreen"
+        },
+        {
+            "label": "cleanScreen",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "command": "reset"
+        }
+    ]
+}
