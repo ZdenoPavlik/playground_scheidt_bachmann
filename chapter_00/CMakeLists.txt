@@ -14,6 +14,11 @@ add_executable(${APPNAME} ${HEADERS} ${SOURCES} )
 target_compile_options(${APPNAME} PRIVATE -Wall -Wcast-align -Wconversion -Wctor-dtor-privacy -Werror -Wextra -Wpedantic -Wshadow -Wsign-conversion)  #Enable warning
 
 include_directories(src)
+include_directories(inc)
+target_include_directories(${APPNAME} 
+PUBLIC
+  ${CMAKE_CURRENT_LIST_DIR}
+)
 
 
 
@@ -27,13 +32,17 @@ find_package(Threads REQUIRED)
 # enable testing functionality
 enable_testing()
 
-add_executable(${test_binary_name} tst/dummy_test_gtest.cpp)
+add_executable(${test_binary_name} tst/unit_test.cpp)
 target_link_libraries(${test_binary_name}
     PRIVATE
         ${GTEST_LIB}
         ${GTEST_MAIN}
         ${GMOCK_LIB}
         Threads::Threads
+)
+target_include_directories(${test_binary_name} 
+PUBLIC
+  ${CMAKE_CURRENT_LIST_DIR}
 )
 
 # define tests name and test binary name

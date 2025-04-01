@@ -3,6 +3,7 @@
 BasedOnStyle: Google 
 IndentWidth: 4
 AllowShortFunctionsOnASingleLine  : None
+ColumnLimit: 140
 ---
 Language: Cpp
 # Force pointers to the type for C++.
