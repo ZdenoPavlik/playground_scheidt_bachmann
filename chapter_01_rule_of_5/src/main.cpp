@@ -23,6 +23,8 @@ Copy Constructor	                When an object is initialized from another obje
 Move Constructor	                When an object is initialized using an rvalue.
 Copy Assignment (operator=)(A&)	    When an object is assigned a value from another object.
 Move Assignment (operator=)(A&&)    When an rvalue is assigned to an object.
+
+https://howardhinnant.github.io/smf.jpg
 */
 
 void makeACopy([[maybe_unused]] SwFull var) {
