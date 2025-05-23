@@ -12,7 +12,7 @@ void memoryLeakExample() {
     std::cout << "After allocation: " << MemoryAnalyzer::getCurrentMemoryUsage() << " KB" << std::endl;
 
     delete[] arr;    // Free allocated memory
-    //malloc_trim(0);  // Force memory to be returned to the OS
+    malloc_trim(0);  // Force memory to be returned to the OS
 
     const size_t memAfterDeallocation{MemoryAnalyzer::getCurrentMemoryUsage()};
     std::cout << "After deallocation: " << memAfterDeallocation << " KB" << std::endl;
