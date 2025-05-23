@@ -31,6 +31,7 @@ void someFunc(SwCopyCtorMissing inst) {
     sizeof(inst);
 }
 
+#ifndef _WIN32
 TEST(SwCopyCtorMissing, test3) {
     EXPECT_DEATH(
         {
@@ -41,3 +42,4 @@ TEST(SwCopyCtorMissing, test3) {
         },
         "double free()");  // sets regex to match error message
 }
+#endif
