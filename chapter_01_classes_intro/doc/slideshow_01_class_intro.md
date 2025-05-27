@@ -23,35 +23,51 @@ author: Zdenko Pavlik
 # Agenda
  - Class introduction, class vs struct
  - Access specifiers
+ - Lifetime of class
  - Inheritance, Encapsulation
  - Virtual table
  - Keywords
- - Possible problems
+ - Possible problems, tips and tricks
+ - Demo, Lessons learned, Q&A
 
 
 ---
 # Class introduction, class vs struct
-- Class
+- Class vs struct
+- When to use what (POCO - Plain Old C Object)
+
+---
+# Lifetime of class
+- Constructor, Destructor
 
 ---
 # Access specifier
 - public, protected, private keyword
+
+--- 
+# Inheritance, Encapsulation
 
 ---
 # Virtual table
 
 ---
 # Keywords
-- override vs overload
-
-
----
-## Slide 2 Title
-- Diamond inheritance problem
+- this
 - override vs overload
 - final
-- size of empty class
+- const
+
+---
+# Possible problems, tips and tricks
+- Diamond inheritance problem
+- Size of empty class
+
+--- 
+# Demo time
+
+---
+# Lessons learned
 
 
 ---
-## Lessons learned & Highlights
+# Lessons learned & Highlights
