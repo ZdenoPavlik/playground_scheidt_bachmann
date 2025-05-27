@@ -20,32 +20,34 @@ author: Zdenko Pavlik
             transform-origin: bottom right;" />
 
 ---
-# Benefits of Our Approach
-
-- 🚀 High performance
-- 🔒 Secure design
-- 💡 Innovative
+# Agenda
+ - Class introduction, class vs struct
+ - Access specifiers
+ - Inheritance, Encapsulation
+ - Virtual table
+ - Keywords
+ - Possible problems
 
 
 ---
-# System Architecture
+# Class introduction, class vs struct
+- Class
 
-- Modular design
-- Clear interfaces
 ---
+# Access specifier
+- public, protected, private keyword
 
-
-# My Presentation
-- Point 1
-- Point 2
-    - **Bold**
-    - _Italic_
-    - `code`
 ---
+# Virtual table
 
+---
+# Keywords
+- override vs overload
+
+
+---
 ## Slide 2 Title
 - Diamond inheritance problem
-- Virtual table
 - override vs overload
 - final
 - size of empty class
