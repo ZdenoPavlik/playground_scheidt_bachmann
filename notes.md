@@ -11,7 +11,7 @@ Add "c:\Program Files\LLVM\bin\" to PATH variable
 ## Building all
 ### Optimized for development
 rm build
-cmake -S . -B build -G Ninja
+cmake -S . -B build -G Ninja  -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
 cmake --build build
 
 ### Full commands

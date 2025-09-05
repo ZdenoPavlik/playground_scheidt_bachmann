@@ -19,12 +19,39 @@
             }
         },
         {
+            "label": "buildProject_win",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "command": "cmake",
+            "args": [
+                "--build",
+                "build",
+                "--parallel"
+            ],
+            "dependsOn": "cleanScreen_win",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
             "label": "cleanScreen",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "command": "reset"
+        },
+        {
+            "label": "cleanScreen_win",
             "type": "shell",
             "options": {
                 "cwd": "${workspaceRoot}/build"
             },
-            "command": "reset"
+            "command": "cls"
         }
     ]
 }

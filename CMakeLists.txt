@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 4.0)
 project("LinuxPlayground"  LANGUAGES CXX)
 
-#cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug ..
-
 
 # Define the prefix to search for
 set(SUBPROJECT_PREFIX "chapter_")
