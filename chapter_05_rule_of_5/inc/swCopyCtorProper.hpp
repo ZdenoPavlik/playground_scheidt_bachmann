@@ -5,7 +5,7 @@
 class SwCopyCtorProper {
    public:
     explicit SwCopyCtorProper(std::string newString) : data(new char[newString.size() + 1]) {
-        strcpy(data, newString.data());
+        strcpy_s(data, newString.size()+1, newString.data());
     }
 
     ~SwCopyCtorProper() {
@@ -17,7 +17,7 @@ class SwCopyCtorProper {
         std::cout << "Calling copy constructor" << std::endl;
         delete[] data;
         data = new char[sizeof(other.data)];
-        strcpy(data, other.data);
+        strcpy_s(data, sizeof(other.data), other.data);
     }
 
     SwCopyCtorProper& operator=(SwCopyCtorProper& other) {

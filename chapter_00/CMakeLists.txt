@@ -9,18 +9,16 @@ set (SOURCES
 set(HEADERS
 )
 
-project(${APPNAME}  LANGUAGES CXX)
+project(${APPNAME} LANGUAGES CXX)
 add_executable(${APPNAME} ${HEADERS} ${SOURCES} )
-# Linux-specific settings
-if(UNIX AND NOT APPLE)
-    message(STATUS "Compiling on Linux")
-    target_compile_options(${APPNAME} PRIVATE -Wall -Wcast-align -Wconversion -Wctor-dtor-privacy -Werror -Wextra -Wpedantic -Wshadow -Wsign-conversion)  #Enable warning
-endif()
 
-# Windows-specific settings
-if(WIN32)
-    message(STATUS "Compiling on Windows")
-    target_compile_options(${APPNAME} PRIVATE -W4)  #Enable warning
+# Windows specific settings
+if (MSVC)
+    message(STATUS "Compiling using MSVC (Visual studio) compiler")
+    target_compile_options(${APPNAME} PRIVATE -W4)
+else()
+  message(STATUS "Clang detected: now compiling with style, grace, and slightly smug optimism...")
+  target_compile_options(${APPNAME} PRIVATE -Wall -Wcast-align -Wconversion -Wctor-dtor-privacy -Werror -Wextra -Wpedantic -Wshadow -Wsign-conversion)  #Enable warning
 endif()
 
 include_directories(src)
@@ -50,7 +48,8 @@ set(test_binary_name ${APPNAME}_tests)
 #find_library(GMOCK_LIB gmock REQUIRED)
 find_package(Threads REQUIRED)
 
-if(WIN32)
+#if(WIN32)
+if (MSVC)
     message(STATUS "Adding googletest as /MTd")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
 endif()

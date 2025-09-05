@@ -25,7 +25,10 @@ author: Zdenko Pavlik
 - 🚀 High performance
 - 🔒 Secure design
 - 💡 Innovative
+- ⚠️ Warning
 
+Another emojis
+https://emojipedia.org/en/search?q=programming
 
 ---
 # System Architecture

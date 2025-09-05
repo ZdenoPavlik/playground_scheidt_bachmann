@@ -67,6 +67,8 @@
         "thread": "cpp",
         "cinttypes": "cpp",
         "variant": "cpp",
-        "fstream": "cpp"
-    }
+        "fstream": "cpp",
+        "xstring": "cpp"
+    },
+    "latex-workshop.formatting.latex": "none"
 }

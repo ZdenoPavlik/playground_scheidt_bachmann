@@ -5,7 +5,7 @@
 class Sw {
    public:
     explicit Sw(std::string newString) : data(new char[newString.size() + 1]) {
-        strcpy(data, newString.data());
+        strcpy_s(data, newString.size()+1, newString.data());
     }
 
    private:

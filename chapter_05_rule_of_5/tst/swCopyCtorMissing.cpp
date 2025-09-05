@@ -27,8 +27,8 @@ TEST(SwCopyCtorMissing, test2) {
     EXPECT_TRUE(MemoryAnalyzer::isMemoryLeakInTolerance(memoryBeforeAllocation, memoryAfterAllocation, 20));
 }
 
-void someFunc(SwCopyCtorMissing inst) {
-    sizeof(inst);
+void someFunc( SwCopyCtorMissing inst) {
+    //sizeof(inst);
 }
 
 #ifndef _WIN32

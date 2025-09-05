@@ -11,7 +11,12 @@
             "args": [
                 "-j"
             ],
-            "dependsOn": "cleanScreen"
+            "dependsOn": "cleanScreen",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
             "label": "cleanScreen",
