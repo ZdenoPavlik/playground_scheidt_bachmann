@@ -5,6 +5,7 @@ Terminal:
     winget install Kitware.CMake
     winget install Ninja-build.Ninja
     winget install LLVM.LLVM
+    winget install --id Python.Python.3.10 -e
 Add "c:\Program Files\LLVM\bin\" to PATH variable
 
 
