@@ -1,54 +1,53 @@
 ---
-marp: true
-theme: gaia 
-paginate: true
+title: Class introduction
 author: Zdenko Pavlik
+lang: en-US
+institute: Scheidt&Bachmann Slovakia s.r.o.    
+pdf-engine: lualatex
+mainfont: "Segoe UI Emoji"
+cmd: pandoc slideshow_01_class_intro.md -t beamer -o slideshow_01_class_intro.pdf
 ---
-
-<!-- _class: lead -->
 
 # Class introduction
 
-### ... done with support of
 
-<img src="images/sb_logo.png"
-     style="position: absolute;
-            bottom: 20px;
-            right: 20px;
-            transform: scale(0.5);
-            transform-origin: bottom right;" />
+\begin{center}
+... done with support of
+\end{center}
 
-        
+::: {.center}
+![scheidt&bachmann](images/sb_logo.png){ height=64px }
+:::
 
 ---
+
 # Agenda
  - Class introduction, class vs struct
  - Access specifiers
  - Life cycle of class
  - Inheritance, Encapsulation, Interface class
  - Virtual table
- - Keywords
+ - Additional keywords
  - Possible problems, tips and tricks
  - Demo, Lessons learned, Q&A, ...
 
-
 ---
+
 # Class introduction, class vs struct
-- Class is elementary structure of C++ language
-- Class uses by default `private` access specifier
+- Class is elementary structure of C++ language designed to represent smallest logical unit
+- `Class` uses by default `private` access specifier
 - Class is intended to use encapsulation - limiting access to member variables in order to prevent i.e. unintended modifications
-- [Read more about encapsulation here](https://www.geeksforgeeks.org/encapsulation-in-cpp/)
 
 ```cpp
 class Person
 {
      std::string name;
      uint8_t age;
-};     
+};
 ```
 
-
 ---
+
 # Class introduction, class vs struct
 ```cpp
 class Person
@@ -69,13 +68,15 @@ int main() {
 ```
 
 --- 
+
 # Class introduction, class vs struct
 - `Struct` is the same as `class`, but used `public` specifier by default
   - Struct can be inherited, can contain methods, can contain virtual table, ...
 - Due to historical reasons it is used mostly for data collection
-- "POCO" - Plain Old C Object
+- "POCO" - **P**lain **O**ld **C** **O**bject
 
 ---
+
 # Class introduction, class vs struct
 ```cpp
 struct Person
@@ -87,7 +88,8 @@ struct Person
 int main()
 {
      Person john;
-     john.name = "John Doe"; //This is valid, because all members are public
+     john.name = "John Doe"; 
+           //This is valid, because all members are public
      john.age = 42;
 
      return 0;
@@ -95,51 +97,58 @@ int main()
 ```
 
 ---
-# Access specifier
+
+# Access specifiers
 - `public`
-  - Variable/function can be modified/called from **outside** of instance
+  - Variable/function can be modified/called from \textcolor{blue}{outside} of instance
 - `protected`
-  - Variable/function can be modified/called only from **inside of instance or it's child**
+  - Variable/function can be modified/called only from \textcolor{blue}{inside} of instance or \textcolor{blue}{it's child}
 - `private`
-  - Variable/function can be modified/called only from **inside** of instance.
+  - Variable/function can be modified/called only from \textcolor{blue}{inside} of instance.
 
 ---
+
 # Class introduction, class vs struct
 - Member variables
 - Member functions
-- ⚠️ Be careful about uninitialized variables
-- https://en.wikipedia.org/wiki/Uninitialized_variable
+- **[WARNING]** Be careful about uninitialized variables
+  - https://en.wikipedia.org/wiki/Uninitialized_variable
 
 ---
-<style>
-img[alt~="center"] {
-  display: block;
-  margin: 0 auto;
-}
-</style>
 
-![w:1100 center](images/unitialized_variable.png)
+::: {.center}
+![Uninitialized variables](images/unitialized_variable.png)
+:::
 
 ---
+
 # Class introduction
 - Demo time
 
 ---
+
 # Life cycle of class
-- Compiler creates several function for you
+- Compiler creates several function for you (_"Special member functions"_)
 - Constructor
   - Function that is called upon instance creation
   - User can alter it in order to set initial values to variables or force user to set them
-  - "Parametrized" vs "default" constructor
+  - "Parametrized" vs "default" constructor 
 
 ---
+
 # Life cycle of class
 - Destructor
   - Called at the end of class lifetime (i.e. when object goes out of scope. Warning, this mechanism is not guaranteed!)
   - Can be used to cleanup resources (free allocated memory, end connection, close sockets, free handles, unsubscribe to messages, ...)
-  - ⚠️ Always declare destructor as virtual!
+  - [WARNING] Always declare destructor as virtual!
 
 ---
+
+# Life cycle of class
+- Demo time
+
+---
+
 # Life cycle of class
 - Rule of three
   - Copy constructor
@@ -148,20 +157,18 @@ img[alt~="center"] {
 - Rule of five
   - Move constructor
   - Move assignment operator
-- [Read more here](https://en.cppreference.com/w/cpp/language/rule_of_three.html)
+- https://en.cppreference.com/w/cpp/language/rule_of_three.html
 
 ---
-# Life cycle of class
-- Demo time
 
---- 
 # Encapsulation, Inheritance, Interface class
-**Encapsulation**
+### Encapsulation
 - Limiting access to member variables
 - Creating "read-only" variables
 - Validating input/output of variables
 
 ---
+
 ### Encapsulation
 ```cpp
 class Person
@@ -179,7 +186,8 @@ public:
 };
 ```
 
---- 
+---
+
 ### Inheritance
 ```cpp
 class Animal
@@ -199,7 +207,8 @@ public:
 }
 ```
 
---- 
+---
+
 ### Inheritance
 ```cpp
 class Dog : public Animal
@@ -215,7 +224,8 @@ int main()
 }
 ```
 
---- 
+---
+
 ### Inheritance
 ```cpp
 class Dog : public Animal
@@ -231,13 +241,15 @@ int main()
 }
 ```
 
---- 
+---
+
 # Interface class (Abstract class)
 - Defining interface, forcing user to fulfill requirements
 - You can't instantiate it
 ```cpp
 class NoisyAnimal{
-     virtual void makeNoise() = 0; //this enforce us to implement makeNoise function
+     virtual void makeNoise() = 0; 
+     //this enforce us to implement makeNoise function
 }
 
 class NoisyDog : public NoisyAnimal
@@ -249,44 +261,50 @@ class NoisyDog : public NoisyAnimal
 ```
 
 ---
+
 ```cpp
 int main()
 {
-     NoisyAnimal animal; //This will throw compilation error
+     NoisyAnimal animal; //Compilation error
      NoisyDog dog;       //This is fine
      dog.makeNoise();
      return 0;
 }
 ```
 
---- 
+---
+
 # Encapsulation, Inheritance, Interface class
 - Demo time
 
 ---
+
 # Virtual table
 - Table that is containing relationship between parents/children and calls proper functions
 - Created by using keyword `virtual` somewhere in class (or eventually others that imply `virtual`, i.e. `final`, `override`)
 - Used for runtime polymorphism
   - Polymorphism -> instance of class behaving like other type
   - Remember `Animal lassie = new Dog;`
-- [Read more here](https://en.wikipedia.org/wiki/Virtual_method_table)
+- https://en.wikipedia.org/wiki/Virtual_method_table
 
 ---
+
 # Virtual table
 - Demo time
 
 ---
-# Keywords
+
+# Additional keywords
 - `this`
   - Returns address of current instance. Useful when I am registering myself to some publisher.
 - `override` (vs overload)
   - Overrides method in parent
   - Checks whether method I am trying to override truly exists in parent
   - Prevents unintended overloading (functions of same name but with different parameters)
+
 ---
 
-# Keywords
+# Additional keywords
 - `final`
   - If used on class, prevents further inheritance
   - If used on method, prevents overriding this method
@@ -296,10 +314,14 @@ int main()
 - `explicit`
   - Prevents unintended conversion of input parameters
 
- # Keywords
+---
+
+# Additional keywords
+
  - Demo time 
 
 ---
+
 # Possible problems, tips and tricks
 - Always initialize your member variables (at least with `{}`);
   - Otherwise in `Release` or `-O3` build these values will obtain random values!
@@ -307,6 +329,7 @@ int main()
   - [Read more here](https://www.geeksforgeeks.org/why-is-the-size-of-an-empty-class-not-zero-in-c/)
 
 ---
+
 ## Possible problems, tips and tricks
 - Diamond inheritance problem
 ```cpp
@@ -326,6 +349,7 @@ class ChildB : public Parent{
 ```
 
 ---
+
 ```cpp
 class Grandchild : public ChildA, ChildB
 {
@@ -340,7 +364,8 @@ int main()
 }
 ```
 
---- 
+---
+
 # Demo time
 - C uninitialized variables
 - Simple class, encapsulation
@@ -350,12 +375,17 @@ int main()
 - final, const, override
 
 ---
+
 # Lessons learned
 - Initialize your variables, otherwise they **WILL** get random values (at least with `{}`)
-  - Otherwise in `Release` or `-O3` they they are not implicitly zeroed
+  - Otherwise in `Release` or `-O3` they are not implicitly zeroed
 - Declare your destructor as **virtual**
 - If possible, use as many keywords as possible (`const`, `override`, `final`, `explicit`, ...)
   - Compilers are very smart and thus performance optimization is not goal of using i.e. `const` keyword. Readability and maintainability is your goal.
 
 ---
+
 # Q&A
+
+
+--- 
