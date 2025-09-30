@@ -13,7 +13,19 @@
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": false,
+            "console": "integratedTerminal",
+            "preLaunchTask": "buildProject_win"
+        },
+        {
+            "name": "chapter_edu_01_classes_intro",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/chapter_edu_01_classes_intro/chapter_edu_01_classes_intro.exe",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "integratedTerminal",
             "preLaunchTask": "buildProject_win"
         },
         {
@@ -25,7 +37,7 @@
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": false,
+            "console": "integratedTerminal",
             "preLaunchTask": "buildProject_win"
         }
     ]

@@ -34,6 +34,10 @@ cmd: pandoc slideshow_01_class_intro.md -t beamer -o slideshow_01_class_intro.pd
 ---
 
 # Class introduction, class vs struct
+
+---
+
+# Class introduction, class vs struct
 - Class is elementary structure of C++ language designed to represent smallest logical unit
 - `Class` uses by default `private` access specifier
 - Class is intended to use encapsulation - limiting access to member variables in order to prevent i.e. unintended modifications
@@ -98,16 +102,6 @@ int main()
 
 ---
 
-# Access specifiers
-- `public`
-  - Variable/function can be modified/called from \textcolor{blue}{outside} of instance
-- `protected`
-  - Variable/function can be modified/called only from \textcolor{blue}{inside} of instance or \textcolor{blue}{it's child}
-- `private`
-  - Variable/function can be modified/called only from \textcolor{blue}{inside} of instance.
-
----
-
 # Class introduction, class vs struct
 - Member variables
 - Member functions
@@ -127,8 +121,40 @@ int main()
 
 ---
 
+# Access specifiers
+
+---
+
+# Access specifiers
+- `public`
+  - Variable/function can be modified/called from \textcolor{blue}{outside} of instance
+- `protected`
+  - Variable/function can be modified/called only from \textcolor{blue}{inside} of instance or \textcolor{blue}{it's child}
+- `private`
+  - Variable/function can be modified/called only from \textcolor{blue}{inside} of instance.
+
+---
+
+# Access specifiers
+- Demo time
+
+---
+
+# Life cycle of class
+
+---
+
 # Life cycle of class
 - Compiler creates several function for you (_"Special member functions"_)
+  - **Default constructor**
+  - **Destructor**
+  - Copy constructor
+  - Move constructor 
+  - Copy assignment operator
+  - Move assignment operator
+    
+
+# Life cycle of class
 - Constructor
   - Function that is called upon instance creation
   - User can alter it in order to set initial values to variables or force user to set them
@@ -145,11 +171,6 @@ int main()
 ---
 
 # Life cycle of class
-- Demo time
-
----
-
-# Life cycle of class
 - Rule of three
   - Copy constructor
   - Copy assignment operator 
@@ -158,6 +179,15 @@ int main()
   - Move constructor
   - Move assignment operator
 - https://en.cppreference.com/w/cpp/language/rule_of_three.html
+
+---
+
+# Life cycle of class
+- Demo time
+
+---
+
+# Encapsulation, Inheritance, Interface class
 
 ---
 
@@ -249,7 +279,7 @@ int main()
 ```cpp
 class NoisyAnimal{
      virtual void makeNoise() = 0; 
-     //this enforce us to implement makeNoise function
+     //this enforces us to implement makeNoise function
 }
 
 class NoisyDog : public NoisyAnimal
@@ -280,6 +310,10 @@ int main()
 ---
 
 # Virtual table
+
+---
+
+# Virtual table
 - Table that is containing relationship between parents/children and calls proper functions
 - Created by using keyword `virtual` somewhere in class (or eventually others that imply `virtual`, i.e. `final`, `override`)
 - Used for runtime polymorphism
@@ -291,6 +325,10 @@ int main()
 
 # Virtual table
 - Demo time
+
+---
+
+# Additional keywords
 
 ---
 
@@ -319,6 +357,10 @@ int main()
 # Additional keywords
 
  - Demo time 
+
+---
+
+# Possible problems, tips and tricks
 
 ---
 
@@ -366,13 +408,14 @@ int main()
 
 ---
 
-# Demo time
-- C uninitialized variables
-- Simple class, encapsulation
-- Abstract class
-- Examining default constructor, , parametrized constructor, destructor
-- Virtual destructor issue
-- final, const, override
+# Possible problems, tips and tricks
+- Demo time
+  - C uninitialized variables
+  - Simple class, encapsulation
+  - Abstract class
+  - Examining default constructor, parametrized constructor, destructor
+  - Virtual destructor issue
+  - final, const, override
 
 ---
 
@@ -386,6 +429,5 @@ int main()
 ---
 
 # Q&A
-
 
 --- 

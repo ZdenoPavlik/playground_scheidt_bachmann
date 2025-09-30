@@ -3,7 +3,7 @@
 class Person
 {
     std::string name;
-    unsigned int age;
+    unsigned int age{};
 
 public:
     void setName(std::string newName)

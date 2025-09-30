@@ -39,7 +39,9 @@ sudo cp lib/*.a /usr/lib
 
 
 # Documentation - Export slideshow to PDF manually
-npx @marp-team/marp-cli slideshow.md --pdf --allow-local-files
+pandoc slideshow_01_class_intro.md -t beamer -o slideshow_01_class_intro.pdf
+
+OBSOLETE - npx @marp-team/marp-cli slideshow.md --pdf --allow-local-files
 
 
 
