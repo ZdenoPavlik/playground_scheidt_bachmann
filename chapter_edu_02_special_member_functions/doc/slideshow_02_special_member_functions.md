@@ -1,5 +1,5 @@
 ﻿---
-title: Sample Presentation
+title: Special member functions
 author: Zdenko Pavlik
 lang: en-US
 institute: Scheidt&Bachmann Slovakia s.r.o.    
@@ -8,57 +8,109 @@ mainfont: "Segoe UI Emoji"
 cmd: pandoc slideshow_02_special_member_functions.md -t beamer -o slideshow_02_special_member_functions.pdf
 ---
 
-# Introduction
+# Special member functions
 
-![SB logo](images/sb_logo.png){ height=64px }
 
-Welcome to this sample presentation.
+\begin{center}
+... done with support of
+\end{center}
 
-- Point 1
-- Point 2
-- Point 3
-
----
-
-# Some emojis
-
--  Warning message
--  High performance
--  Secure design
--  Innovative
-
-Another emojis
-https://emojipedia.org/en/search?q=programming
+::: {.center}
+![scheidt&bachmann](images/sb_logo.png){ height=64px }
+:::
 
 ---
 
-# Goals
+# Agenda
+- Lessons learned from previous lesson (class introduction)
+- Examples from previous lesson
+- Special member function
+- Compiler generated functions
+- Copy semantics 
+- Move semantics
+- Copy vs move
+- Rule of Zero
+- Rule of Three
+- Rule of Five
+- Copy elision & RVO
+- Practical examples - How to prevent class from being movable, copyable. Compare with std::unique_ptr
+ 
+---
 
-1. Show Markdown-based slides
-2. Convert to PDF using Pandoc
-3. Stay productive
+# Lessons learned from previous lesson (class introduction)
 
 ---
 
-# Code Sample
-
-```cpp
-#include <iostream>
-int main() {
-    std::cout << "Hello, world!" << std::endl;
-}
-```
-
----
-
-# My Presentation
-- Point 1
-- Point 2
-    - **Bold**
-    - _Italic_
-    - `code`
+# Lessons learned from previous lesson (class introduction)
+- Virtual destructor
+   - Always declare destructor as `virtual`, otherwise it may not be called at all.
+- Uninitialized variables
+   - Always initialize your variables, at least with `{}`, otherwise those variables will obtain random values in release version.
+- Encapsulation
+   - Do not populate your variables as `public` to improve personal comfort. Other users can break functionality of your class.
+-  Use keywords like `const`, `override`, `final`
+   - It will give a hint to other developers how to behave to your class.
 
 ---
 
-use following command in order to generate pdf
-```pandoc presentation.md -t beamer -o presentation.pdf```
+# Example of usage from previous lesson
+
+---
+
+# Example of usage from previous lesson
+ - Inheritance (`Logger` example)
+  - Reusing functionality
+ - Polymorphism (`std::vector<Animal> zoo` example)
+ - Polymorphism (`foo(Parent class)` example)
+
+---
+
+# Special member function
+
+---
+
+# Special member function
+- Constructor (default or parametrized)
+- Destructor
+- Copy constructor
+- Copy assignment operator
+- Move constructor
+- Move assignment operator
+
+---
+
+# Compiler generated functions
+
+---
+
+# Copy semantics 
+
+---
+
+# Move semantics
+
+---
+
+# Copy vs move
+
+---
+
+# Rule of Zero
+
+---
+
+# Rule of Three
+
+---
+
+# Rule of Five
+
+---
+
+# Copy elision & RVO
+
+---
+
+# Practical examples - How to prevent class from being movable, copyable. Compare with std::unique_ptr
+
+---

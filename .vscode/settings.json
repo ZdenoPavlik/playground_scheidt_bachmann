@@ -91,5 +91,9 @@
         "xtree": "cpp",
         "xutility": "cpp"
     },
-    "latex-workshop.formatting.latex": "none"
+    "latex-workshop.formatting.latex": "none",
+    "cSpell.words": [
+        "bject",
+        "mainfont"
+    ]
 }

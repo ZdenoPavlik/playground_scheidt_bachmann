@@ -17,10 +17,10 @@
             "preLaunchTask": "buildProject_win"
         },
         {
-            "name": "chapter_edu_01_classes_intro",
+            "name": "chapter_edu_02_special_member_functions",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/chapter_edu_01_classes_intro/chapter_edu_01_classes_intro.exe",
+            "program": "${workspaceFolder}/build/chapter_edu_02_special_member_functions/chapter_edu_02_special_member_functions.exe",
             "args": [],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
