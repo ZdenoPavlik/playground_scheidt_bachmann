@@ -29,54 +29,11 @@ PUBLIC
 )
 
 
-
-#testing section
-include(FetchContent)
-
-# Fetch GoogleTest
-FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/refs/heads/main.zip
-)
-# Make available
-FetchContent_MakeAvailable(googletest)
-
-
-set(test_binary_name ${APPNAME}_tests)
-#find_library(GTEST_LIB googletest REQUIRED)
-#find_library(GTEST_MAIN gtest_main REQUIRED)
-#find_library(GMOCK_LIB gmock REQUIRED)
-find_package(Threads REQUIRED)
-
-#if(WIN32)
-if (MSVC)
-    message(STATUS "Adding googletest as /MTd")
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
-endif()
-
-# enable testing functionality
-enable_testing()
-
-add_executable(${test_binary_name} tst/unit_test.cpp)
-target_link_libraries(${test_binary_name}
-    PRIVATE
-        gtest 
-        gtest_main
-        gmock
-        gmock_main
-        Threads::Threads
-)
-target_include_directories(${test_binary_name} 
-PUBLIC
-  ${CMAKE_CURRENT_LIST_DIR}
-)
-
-# define tests name and test binary name
-add_test(NAME ${APPNAME}_tests COMMAND ${test_binary_name})
-
-#automatically execute unit tests after build
-add_custom_command(TARGET ${test_binary_name}
+#automatically generate documentation after build
+add_custom_command(TARGET ${APPNAME} 
     POST_BUILD
-    COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure
-    COMMENT "Running unit tests after build..."
+    COMMAND pandoc 
+           -t beamer
+           "${CMAKE_CURRENT_SOURCE_DIR}/doc/slideshow_02_special_member_functions.md" -o "${CMAKE_CURRENT_SOURCE_DIR}/doc/slideshow_02_special_member_functions.pdf"
+    COMMENT "Generating documentation..."
 )

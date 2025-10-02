@@ -94,6 +94,8 @@
     "latex-workshop.formatting.latex": "none",
     "cSpell.words": [
         "bject",
-        "mainfont"
-    ]
+        "mainfont",
+        "unwindinfo"
+    ],
+    "editor.defaultFormatter": "xaver.clang-format"
 }
