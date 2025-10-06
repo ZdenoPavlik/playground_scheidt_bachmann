@@ -3,47 +3,61 @@
 
 class RuleOfFive
 {
-    char* cstring; // raw pointer used as a handle to a
-                   // dynamically-allocated memory block
+    std::string m_name;
+    std::vector<int> m_data;
+    [[maybe_unused]] int m_value{};
+
 public:
-    explicit RuleOfFive(const char* s = "") : cstring(nullptr)
-    { 
-        if (s)
-        {
-            cstring = new char[std::strlen(s) + 1]; // allocate
-            strcpy_s(cstring, std::strlen(s) + 1, s); // populate 
-        } 
-    }
- 
-    ~RuleOfFive()
+    explicit RuleOfFive(const std::string name = "", const std::vector<int> data = {}, const int value = 0)
+        : m_name(name)
+        , m_data(data)
+        , m_value(value)
     {
-        delete[] cstring; // deallocate
     }
- 
+
+    ~RuleOfFive() {}
+
     RuleOfFive(const RuleOfFive& other) // copy constructor
-        : RuleOfFive(other.cstring) {}
- 
-    RuleOfFive(RuleOfFive&& other) noexcept // move constructor
-        : cstring(std::exchange(other.cstring, nullptr)) {}
- 
+    {
+        std::cout << "Calling copy constructor" << std::endl;
+        m_name = other.m_name;
+        m_data = other.m_data;
+    }
+
     RuleOfFive& operator=(const RuleOfFive& other) // copy assignment
     {
-        // implemented as move-assignment from a temporary copy for brevity
-        // note that this prevents potential storage reuse
-        return *this = RuleOfFive(other);
-    }
- 
-    RuleOfFive& operator=(RuleOfFive&& other) noexcept // move assignment
-    {
-        std::swap(cstring, other.cstring);
+        std::cout << "Calling copy assignment" << std::endl;
+        m_name = other.m_name;
         return *this;
     }
- 
-// alternatively, replace both assignment operators with copy-and-swap
-// implementation, which also fails to reuse storage in copy-assignment.
-//  RuleOfFive& operator=(RuleOfFive other) noexcept
-//  {
-//      std::swap(cstring, other.cstring);
-//      return *this;
-//  }
+
+    RuleOfFive(RuleOfFive&& other) noexcept // move constructor
+    {
+        std::cout << "Calling move constructor" << std::endl;
+        m_name = std::move(other.m_name);
+        m_data = std::move(other.m_data);
+        m_value = other.m_value;
+        other.m_value = 0;
+    }
+
+    RuleOfFive& operator=(RuleOfFive&& other) noexcept // move assignment
+    {
+        std::cout << "Calling move assignment" << std::endl;
+        m_name = std::move(other.m_name);
+        m_data = std::move(other.m_data);
+        m_value = other.m_value;
+        other.m_value = 0;
+        return *this;
+    }
 };
+
+/*
+main.cpp
+
+    RuleOfFive orig{"five", {1, 2, 3}, 42};
+
+    RuleOfFive rf1 = std::move(orig);
+
+    RuleOfFive rf2;
+    rf2 = std::move(rf1);
+*/

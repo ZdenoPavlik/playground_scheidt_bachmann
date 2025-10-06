@@ -6,6 +6,9 @@ institute: Scheidt&Bachmann Slovakia s.r.o.
 pdf-engine: lualatex
 mainfont: "Segoe UI Emoji"
 cmd: pandoc slideshow_02_special_member_functions.md -t beamer -o slideshow_02_special_member_functions.pdf
+classoption:
+  - t
+  - aspectratio=169
 ---
 
 # Special member functions
@@ -28,7 +31,7 @@ cmd: pandoc slideshow_02_special_member_functions.md -t beamer -o slideshow_02_s
 - Compiler generated functions
 - Copy semantics, Move semantics
 - Rule of Zero / Three / Five
-- Copy elision & RVO
+- Copy elision & Move elision
 - Practical examples
  
 ---
@@ -85,7 +88,7 @@ Compiler will generate some functions for you, depending on your code. Even simp
 
 These functions (many times are correctly written) enables your class to be easily constructible, movable or copyable without developer's input.
 
-But often (especially when class contains pointer as member variable) it needs to be handled by user!
+But often (especially when class contains **pointer as member variable**) it needs to be handled by user!
 
 ---
 
@@ -152,7 +155,7 @@ Move semantics is a feature that allows our program to transfer ownership of res
 # Copy semantics / Move semantics
 ## Comparison
 ::: {.center}
-![Move vs copy](images/copy_vs_move.png)
+![Move vs copy](images/copy_vs_move.png){ height=192px }
 :::
 
 [\textcolor{blue}{Read more here.}](https://www.geeksforgeeks.org/cpp/stdmove-in-utility-in-c-move-semantics-move-constructors-and-move-assignment-operators/)
@@ -163,7 +166,7 @@ Move semantics is a feature that allows our program to transfer ownership of res
 ## Interesting fact
 **Move semantics** were introduced in C++11 standard. Since then we can use `std::move` function.
 
-
+\
 [\textcolor{blue}{std::move}](https://en.cppreference.com/w/cpp/utility/move.html)
 
 [\textcolor{blue}{C++ move semantics from scratch}](https://cbarrete.com/move-from-scratch.html)
@@ -183,10 +186,161 @@ Destructor \
 
 ---
 
-# Copy elision & RVO
+# Rule of Zero / Three / Five
+
+\ 
+
+\begin{center}
+\begin{tabular}{ ||c||c|c|c|| } 
+\hline
+                            & Rule of Zero & Rule of Three & Rule of Five\\ 
+\hline
+\hline
+Destructor                  & no & YES & YES\\ 
+\hline
+Copy constructor            & no & YES & YES\\ 
+\hline
+Copy assignment operator    & no & YES & YES\\ 
+\hline
+Move constructor            & no & no & YES\\ 
+\hline
+Move assignment operator    & no & no & YES\\ 
+\hline
+\end{tabular}
+\end{center}
 
 ---
 
-# Practical examples - How to prevent class from being movable, copyable. Compare with std::unique_ptr
+# Rule of Zero / Three / Five
+## Best practices
+### C.20: If you can avoid defining any default operations, do
+\
+This rule is also known as “the rule of zero“. That means, that you can avoid writing any custom constructor, copy/move constructors, assignment operators, or destructors by using types that support the appropriate copy/move semantics. This applies to the regular types such as the built-in types bool or double, but also the containers of the Standard Template Library (STL)such as std::vector or std::string.
+\ 
+
+[\textcolor{blue}{Cpp best practices, C.20}](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rc-zero) \
+[\textcolor{blue}{Modernes C++}](https://www.modernescpp.com/index.php/rule-of-zero-or-six/)
+
+---
+
+# Rule of Zero / Three / Five
+## Best practices
+### C.20: If you can avoid defining any default operations, do
+
+```cpp
+class NamedVector
+{ 
+public: // Consider this section to be private
+    std::string name;
+    std::vector<int> data;
+};
+
+NamedVector nv;                 //Default constructor
+nv.name = "My vector";
+nv.data = {1, 2, 3, 4, 5};
+NamedVector anotherVector{nv};  //Copy constructor
+NamedVector anotherVector2;
+anotherVector2 = nv;            //Copy assignment operator
+```
+
+---
+
+# Rule of Zero / Three / Five
+## Best practices
+### C.20: If you can avoid defining any default operations, do
+
+Demo time
+
+---
+
+# Rule of Zero / Three / Five
+## Best practices
+### C.21: If you define or =delete any default operation, define or =delete them all
+\
+The big six are closely related. Due to this relation, you have to **define** or **=delete** all six. Consequently, this rule is called “the rule of six“. Sometimes, you hear “the rule of five“, because the default constructor is special, and, therefore, sometimes excluded.
+\ 
+
+[\textcolor{blue}{Cpp best practices, C.21}](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rc-five) \
+[\textcolor{blue}{Modernes C++}](https://www.modernescpp.com/index.php/rule-of-zero-or-six/)
+
+---
+
+# Rule of Zero / Three / Five
+## Best practices
+### C.21: If you define or =delete any default operation, define or =delete them all
+\
+Demo time
+
+---
+
+# Copy elision & Move elision
+\
+Sometimes it is beneficial to delete copy and move operations.
+
+```cpp
+class NMvNCp //Not moveable, not copyable
+{
+public:
+    NMvNCp(const std::string name) : m_name(name) {}
+    ~NMvNCp() = default;
+
+    NMvNCp(const NMvNCp& other) = delete;                // copy constructor
+    NMvNCp& operator=(const NMvNCp& other) = delete;     // copy assignment
+    NMvNCp(NMvNCp&& other) noexcept = delete;            // move constructor
+    NMvNCp& operator=(NMvNCp&& other) noexcept = delete; // move assignment
+
+private:
+    std::string m_name{};
+};
+```
+
+# Copy elision & Move elision
+\
+```cpp
+    NMvNCp bob{"Bob"};
+
+    NMvNCp joe(bob); 
+        // Compilation error, copy constructor is deleted
+    NMvNCp joe = std::move(bob); 
+        // Compilation error, move assignment is deleted
+```
+
+---
+
+# Comparison with std::unique_ptr
+
+std::unique_ptr contains following member functions:
+
+ - `(constructor)` 
+ - `(destructor)` 
+ - `operator=` assigns the unique_ptr
+   - move assignment operator
+
+```cpp
+    std::unique_ptr<int> number1 = std::make_unique<int>(42);
+    std::unique_ptr<int> number2 = std::make_unique<int>(15);
+    number1 = std::move(number2); //ok, enforces move
+    number1 = number2; //error, enforces copy
+```
+
+TL;DR:
+    `std::unique_ptr` is movable, but not copyable.
+
+
+[\textcolor{blue}{Cpp reference}](https://en.cppreference.com/w/cpp/memory/unique_ptr.html) \
+[\textcolor{blue}{operator=}](https://en.cppreference.com/w/cpp/memory/unique_ptr/operator=.html)\
+
+---
+
+# Practical examples - How to prevent class from being movable, copyable. 
+\
+Demo time
+
+---
+
+# Lessons learned
+
+- **C.20** If you can avoid defining any default operations, do
+- **C.21** If you define or =delete any default operation, define or =delete them all
 
 ---

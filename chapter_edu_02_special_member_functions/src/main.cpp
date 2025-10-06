@@ -2,25 +2,16 @@
 #include "inc/RuleOfZero.hpp"
 #include "inc/RuleOfThree.hpp"
 #include "inc/RuleOfFive.hpp"
-
-class MyClass
-{
-public:
-    void foo()
-    {
-        std::cout << "foo" << std::endl;
-    };
-
-    // private:
-    //     [[maybe_unused]] int i{};
-};
+#include <vector>
+#include <memory>
 
 int main()
 {
     std::cout << "Hello World - chapter_edu_02_special_member_functions" << "Hello World - chapter_edu_02_special_member_functions" << std::endl;
 
-    MyClass clazz;
-    clazz.foo();
+    std::unique_ptr<int> number1 = std::make_unique<int>(42);
+    std::unique_ptr<int> number2 = std::make_unique<int>(15);
+    number1 = std::move(number2);
 
     return 0;
 }

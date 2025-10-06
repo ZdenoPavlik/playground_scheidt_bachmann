@@ -30,10 +30,10 @@ PUBLIC
 
 
 #automatically generate documentation after build
-add_custom_command(TARGET ${APPNAME} 
-    POST_BUILD
-    COMMAND pandoc 
-           -t beamer
-           "${CMAKE_CURRENT_SOURCE_DIR}/doc/slideshow_02_special_member_functions.md" -o "${CMAKE_CURRENT_SOURCE_DIR}/doc/slideshow_02_special_member_functions.pdf"
-    COMMENT "Generating documentation..."
-)
+#add_custom_command(TARGET ${APPNAME} 
+#    POST_BUILD
+#    COMMAND pandoc 
+#           -t beamer
+#           "${CMAKE_CURRENT_SOURCE_DIR}/doc/slideshow_02_special_member_functions.md" -o "${CMAKE_CURRENT_SOURCE_DIR}/doc/slideshow_02_special_member_functions.pdf"
+#    COMMENT "Generating documentation..."
+#)

@@ -7,6 +7,10 @@ institute: Scheidt&Bachmann Slovakia s.r.o.
 pdf-engine: lualatex
 mainfont: "Segoe UI Emoji"
 cmd: pandoc presentation.md -t beamer -o presentation.pdf
+documentclass: beamer
+classoption:
+  - t
+  - aspectratio=169
 ---
 
 # Introduction

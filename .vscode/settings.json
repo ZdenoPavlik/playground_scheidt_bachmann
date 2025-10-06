@@ -93,7 +93,10 @@
     },
     "latex-workshop.formatting.latex": "none",
     "cSpell.words": [
+        "aspectratio",
         "bject",
+        "classoption",
+        "documentclass",
         "mainfont",
         "unwindinfo"
     ],
