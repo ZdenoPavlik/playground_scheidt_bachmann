@@ -98,6 +98,7 @@
         "classoption",
         "documentclass",
         "mainfont",
+        "Modernes",
         "unwindinfo"
     ],
     "editor.defaultFormatter": "xaver.clang-format"

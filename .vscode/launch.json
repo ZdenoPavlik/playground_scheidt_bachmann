@@ -22,7 +22,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/chapter_edu_02_special_member_functions/chapter_edu_02_special_member_functions.exe",
             "args": [],
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "console": "integratedTerminal",

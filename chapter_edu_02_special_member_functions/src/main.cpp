@@ -2,16 +2,24 @@
 #include "inc/RuleOfZero.hpp"
 #include "inc/RuleOfThree.hpp"
 #include "inc/RuleOfFive.hpp"
+#include "inc/PointerWrapper.hpp"
 #include <vector>
 #include <memory>
+
+#include "inc/exampleLogger.hpp"
+#include "inc/examplePolymorphism.hpp"
 
 int main()
 {
     std::cout << "Hello World - chapter_edu_02_special_member_functions" << "Hello World - chapter_edu_02_special_member_functions" << std::endl;
 
-    std::unique_ptr<int> number1 = std::make_unique<int>(42);
-    std::unique_ptr<int> number2 = std::make_unique<int>(15);
-    number1 = std::move(number2);
+    // exampleLogger();
+    // examplePolymorphism();
+
+    {
+        PointerWrapper pw1(42);
+        PointerWrapper pw2 = pw1;
+    }
 
     return 0;
 }

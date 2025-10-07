@@ -257,9 +257,8 @@ Demo time
 ## Best practices
 ### C.21: If you define or =delete any default operation, define or =delete them all
 \
-The big six are closely related. Due to this relation, you have to **define** or **=delete** all six. Consequently, this rule is called “the rule of six“. Sometimes, you hear “the rule of five“, because the default constructor is special, and, therefore, sometimes excluded.
-\ 
-
+The big six are closely related. Due to this relation, you have to **define** or **=delete** all six. Consequently, this rule is called “the rule of six“. Sometimes, you hear “the rule of five“, because the default constructor is special, and, therefore, sometimes excluded. \
+\vspace{5mm}
 [\textcolor{blue}{Cpp best practices, C.21}](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rc-five) \
 [\textcolor{blue}{Modernes C++}](https://www.modernescpp.com/index.php/rule-of-zero-or-six/)
 
@@ -332,7 +331,18 @@ TL;DR:
 
 ---
 
-# Practical examples - How to prevent class from being movable, copyable. 
+# Practical examples
+## Shallow vs deep copy
+\
+Common problem is when class contains pointer as member variable. This is evaluated as fundamental data type in C++ and therefore just **value can be copied**, no the content. This results in double free in destructor. \
+\
+**Shallow copy** happens when user accidentally copies just value of pointer - BAD. \
+**Deep copy** happens when user intentionally allocates new memory and copies content - GOOD
+
+---
+
+# Practical examples
+## Shallow vs deep copy
 \
 Demo time
 
@@ -342,5 +352,9 @@ Demo time
 
 - **C.20** If you can avoid defining any default operations, do
 - **C.21** If you define or =delete any default operation, define or =delete them all
+- Be careful with classes that contains pointer as member variable
 
+---
+
+# Q&A
 ---
