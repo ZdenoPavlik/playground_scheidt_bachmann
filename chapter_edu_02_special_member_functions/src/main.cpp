@@ -16,6 +16,14 @@ int main()
     // exampleLogger();
     // examplePolymorphism();
 
+    std::string string1 = "Hello";
+    std::string string2 = string1;
+    std::string string3 = std::move(string1);
+
+    std::cout << "string1: " << string1 << std::endl;
+    std::cout << "string2: " << string2 << std::endl;
+    std::cout << "string3: " << string3 << std::endl;
+
     {
         PointerWrapper pw1(42);
         PointerWrapper pw2 = pw1;

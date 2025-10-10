@@ -90,6 +90,24 @@ These functions (many times are correctly written) enables your class to be easi
 
 But often (especially when class contains **pointer as member variable**) it needs to be handled by user!
 
+
+---
+
+# Compiler generated functions
+```cpp
+    std::string string1 = "Hello";
+    std::string string2 = string1;
+    std::string string3 = std::move(string1);
+
+    std::cout << "string1: " << string1 << std::endl; //""
+    std::cout << "string2: " << string2 << std::endl; //"Hello"
+    std::cout << "string3: " << string3 << std::endl; //"Hello"
+```
+
+::: {.center}
+![Gizka](images/sokantne.jpg){ height=100px }
+:::
+
 ---
 
 # Compiler generated functions
@@ -131,6 +149,27 @@ public:
 ::: {.center}
 ![Class without constructor](images/default_constructor_missing.png)
 :::
+
+---
+
+# Compiler generated functions
+You can instruct compiler to create/prevent default implementation. \
+\
+**= default** enforces compiler to create default implementation of particular function
+```cpp
+class MyClass
+{
+    MyClass() = default; //better use this on i.e. move constructor
+};
+```
+
+**= delete** prevents compiler to generate particular function
+```cpp
+class MyClass
+{
+    MyClass() = delete; //better use this on i.e. move constructor
+};
+```
 
 ---
 
@@ -357,4 +396,5 @@ Demo time
 ---
 
 # Q&A
+
 ---
