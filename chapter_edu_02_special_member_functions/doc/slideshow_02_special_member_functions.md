@@ -42,7 +42,7 @@ classoption:
 
 # Lessons learned from previous lesson (class introduction)
 - Virtual destructor
-   - Always declare destructor as `virtual`, otherwise it may not be called at all.
+   - Always declare destructor as `virtual`, otherwise it may not be called at all. \ Potential memory leak.
 - Uninitialized variables
    - Always initialize your variables, at least with `{}`, otherwise those variables will obtain random values in release version.
 - Encapsulation
@@ -192,16 +192,6 @@ Move semantics is a feature that allows our program to transfer ownership of res
 ---
 
 # Copy semantics / Move semantics
-## Comparison
-::: {.center}
-![Move vs copy](images/copy_vs_move.png){ height=192px }
-:::
-
-[\textcolor{blue}{Read more here.}](https://www.geeksforgeeks.org/cpp/stdmove-in-utility-in-c-move-semantics-move-constructors-and-move-assignment-operators/)
-
----
-
-# Copy semantics / Move semantics
 ## Interesting fact
 **Move semantics** were introduced in C++11 standard. Since then we can use `std::move` function.
 
@@ -211,6 +201,16 @@ Move semantics is a feature that allows our program to transfer ownership of res
 [\textcolor{blue}{C++ move semantics from scratch}](https://cbarrete.com/move-from-scratch.html)
 
 [\textcolor{blue}{What is move semantics?}](https://stackoverflow.com/questions/3106110/what-is-move-semantics)
+
+---
+
+# Copy semantics / Move semantics
+## Comparison
+::: {.center}
+![Move vs copy](images/copy_vs_move.png){ height=192px }
+:::
+
+[\textcolor{blue}{Read more here.}](https://www.geeksforgeeks.org/cpp/stdmove-in-utility-in-c-move-semantics-move-constructors-and-move-assignment-operators/)
 
 
 ---
@@ -383,7 +383,7 @@ Common problem is when class contains pointer as member variable. This is evalua
 # Practical examples
 ## Shallow vs deep copy
 \
-Demo time
+Demo time, `PointerWrapper`
 
 ---
 

@@ -1,6 +1,6 @@
 #include <iostream>
 
-class Logger
+class Logger // Can log into console, file, network, etc.
 {
 public:
     void log(const uint8_t level, const std::string& message)
