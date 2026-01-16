@@ -1,33 +1,20 @@
 #include <iostream>
+#include <vector>
+#include "NamedClass.hpp"
 
-#include "../tools/memoryAnalyzer.hpp"
+int main()
+{
+    NamedClass obj1{"Object 1"};
 
-void memoryLeakExample() {
-    const size_t memInitialUsage{MemoryAnalyzer::getCurrentMemoryUsage()};
-    std::cout << "Memory usage: " << memInitialUsage << " KB" << std::endl;
+    std::vector<NamedClass> container;
+    container.push_back(obj1);
 
-    int* arr = new int[1000000];     // Allocate memory dynamically
-    std::memset(arr, '2', 1000000);  // Touch the memory to ensure it's actually used
+    std::cout << "---------------" << std::endl;
+    // NamedClass obj2{"Object 2"};
+    // container.push_back(obj2);
 
-    std::cout << "After allocation: " << MemoryAnalyzer::getCurrentMemoryUsage() << " KB" << std::endl;
-
-    delete[] arr;    // Free allocated memory
-    //malloc_trim(0);  // Force memory to be returned to the OS
-
-    const size_t memAfterDeallocation{MemoryAnalyzer::getCurrentMemoryUsage()};
-    std::cout << "After deallocation: " << memAfterDeallocation << " KB" << std::endl;
-
-    if (MemoryAnalyzer::isMemoryLeakInTolerance(memInitialUsage, memAfterDeallocation)) {
-        std::cout << "Memory usage is in tolerance" << std::endl;
-    } else {
-        std::cerr << "Memory usage out of tolerance!" << std::endl;
-    }
-}
-
-int main() {
-    std::cout << "Hello World!" << std::endl;
-
-    memoryLeakExample();
+    // container.push_back(std::move(obj1));
+    // container.push_back(std::move(obj2));
 
     return 0;
 }
