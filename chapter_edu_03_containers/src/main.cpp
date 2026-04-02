@@ -24,6 +24,8 @@ int main()
     // container.push_back(std::move(obj1));
     // container.push_back(std::move(obj2));
 
+    container.at(2).whoAmI();
+
     std::cout << "---------------" << std::endl;
     return 0;
 }
