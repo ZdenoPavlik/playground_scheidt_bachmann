@@ -120,5 +120,6 @@ int main()
 	benchmark.stopAndEvaluateBenchmarkMicroseconds("Adding element in the middle");
 
 	std::cout << "---------------" << std::endl;
+
 	return 0;
 }
