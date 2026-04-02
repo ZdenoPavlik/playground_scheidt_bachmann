@@ -18,7 +18,8 @@ if (MSVC)
     target_compile_options(${APPNAME} PRIVATE -W4)
 else()
   message(STATUS "Clang detected: now compiling with style, grace, and slightly smug optimism...")
-  target_compile_options(${APPNAME} PRIVATE -Wall -Wcast-align -Wconversion -Wctor-dtor-privacy -Werror -Wextra -Wpedantic -Wshadow -Wsign-conversion)  #Enable warning
+  target_compile_options(${APPNAME} PRIVATE -Wall -Wcast-align -Wconversion -Wctor-dtor-privacy -Werror -Wextra -Wpedantic -Wshadow -Wsign-conversion -O0)  #Enable warning
+  # -fno-elide-constructors -> this suppresses "mandatory copy elision"
 endif()
 
 include_directories(src)
