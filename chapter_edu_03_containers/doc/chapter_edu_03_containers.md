@@ -87,40 +87,142 @@ Class has several function, that are used when we alter lifecycle of class (eith
 ---
 
 # Intro into containers
-what are containers, why they exists
+
+Containers are pre-prepared storage for our data. There is no unique "best for all scenarios" container, each container is optimized for different purpose.
+Containers designed to store large amount of data in most effective way.
+
+- generic (templated to any type, evaluated during compilation)
+  - `std::list<int>`
+  - `std::list<std::string>`
+- safe to use, tested by tons of users
+- heavily optimized
 
 # Benefits of using std containers
-for (auto i : items){}
 
-find_if
-
-safety bounds checking (std::vector[10] on 5 vector of 5 elements -> not accessing random memory)
-.at(10)
-
-algorithms (std::sort)
-
-
+- `for (auto i : items){}`
+- `container.find_if()`
+- safety bounds checking (`std::vector[10]` on 5 vector of 5 elements -> not accessing random memory)
+  - `container.at(10)`
+- algorithms (`std::sort`)
 
 
 ---
 
 # Choosing containers for demonstration
-map, list, vector, array
+I decide to choose three similar containers. All of them provide (almost) same functions, but performance differs a lot.
+
+- `std::list`
+- `std::vector`
+- `std::deque`
 
 ---
 
 # Common characteristics
-push, pop, ...
+
+- `.emplace_back()` - optimized way to add at the end
+- `.insert(position)` - insert element on given position (i.e. after 5th element)
+- `.at(position)` - random access
+
+---
+
+# Container brief overview
 
 ---
 
 # Organization in memory
-Organization of map, vector, list, array
+Organization of **vector**, list, deque (and map, array)
 
 ::: {.center}
-![List - organization in memory](images/list_organization.png){ height=100px }
+![Vector - organization in memory](images/vector_organization.png){ height=100px }
 :::
 
+---
+
+# Adding element
+Adding element to **vector**, list, deque (and map, array)
+
+::: {.center}
+![Vector - addition](images/vector_addition.png){ height=100px }
+:::
+
+---
+
+# Organization in memory
+Organization of vector, **list**, deque (and map, array)
+
+::: {.center}
+![List - organization in memory](images/list_organization.png){ height=150px }
+:::
+
+---
+
+# Adding element
+Adding element to vector, **list**, deque (and map, array)
+
+::: {.center}
+![List - addition](images/list_addition.png){ height=150px }
+:::
+
+---
+
+# Organization in memory
+Organization of vector, list, **deque** (and map, array)
+
+::: {.center}
+![Deque - organization in memory](images/deque_organization.png){ height=150px }
+:::
+
+---
+
+# Adding element
+Adding element to vector, list, **deque** (and map, array)
+
+::: {.center}
+![Deque - addition](images/deque_addition.png){ height=150px }
+:::
+
+---
+
+# Organization in memory
+Organization of vector, list, deque (and **map**, array)
+
+::: {.center}
+![Map - organization in memory](images/map_organization.png){ height=200px }
+:::
+
+---
+
+# Adding element
+Adding element to vector, list, deque (and **map**, array)
+
+::: {.center}
+![Map - addition](images/map_addition.png){ height=200px }
+:::
+
+---
+
+# Disclaimer binary tree (balanced)
+::: {.center}
+![Map, balanced tree - disclaimer](images/map_disclaimer.png){ height=200px }
+:::
+
+---
+
+# Organization in memory
+Organization of vector, list, deque (and map, **array**)
+
+::: {.center}
+![Array - organization in memory](images/array_organization.png){ height=100px }
+:::
+
+---
+
+# Adding element
+Adding element to vector, list, deque (and map, **array**)
+
+::: {.center}
+![Array - addition](images/array_addition.png){ height=100px }
+:::
 
 --- 
 
@@ -142,22 +244,20 @@ std::list           & O(N)            & O(N)    & O(1)              & O(1) \\
 \hline
 std::map            & O(log N)        &  O(log N)   & O(log N)      & O(log N)\\ 
 \hline
+std::deque          & TBD        &  TBD   & TBD      & TBD\\ 
+\hline
 \end{tabular}
 \end{center}
 
 ---
 
-# Demonstration of adding/accessing/removing element 
+# Demonstration
 
-## On std::array
 ## On std::list
 ## On std::vector
-## On std::map
+## On std::deque
 
 
----
-
-# Disclaimer binary tree (balanced)
 
 ---
 
