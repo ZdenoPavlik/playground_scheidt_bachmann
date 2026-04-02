@@ -4,7 +4,7 @@
 #include <queue>
 #include <string>
 #include "NamedClass.hpp"
-#include "Benchmark.hpp"
+#include "../tools/Benchmark.hpp"
 
 // cls ; cmake --build build --parallel ; .\build\chapter_edu_03_containers\chapter_edu_03_containers.exe
 
@@ -120,6 +120,5 @@ int main()
 	benchmark.stopAndEvaluateBenchmarkMicroseconds("Adding element in the middle");
 
 	std::cout << "---------------" << std::endl;
-
 	return 0;
 }
