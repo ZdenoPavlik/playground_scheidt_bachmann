@@ -201,10 +201,14 @@ Adding element to vector, list, deque (and **map**, array)
 
 ---
 
-# Disclaimer binary tree (balanced)
+# Disclaimer map (binary tree (balanced))
 ::: {.center}
 ![Map, balanced tree - disclaimer](images/map_disclaimer.png){ height=200px }
 :::
+
+
+[\textcolor{blue}{More here - Red black tree}](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
+
 
 ---
 
@@ -244,7 +248,7 @@ std::list           & O(N)            & O(N)    & O(1)              & O(1) \\
 \hline
 std::map            & O(log N)        &  O(log N)   & O(log N)      & O(log N)\\ 
 \hline
-std::deque          & TBD        &  TBD   & TBD      & TBD\\ 
+std::deque          & O(1)            & O(N)    & O(N) or O(1)      & O(N) or O(1) \\ 
 \hline
 \end{tabular}
 \end{center}
@@ -258,21 +262,12 @@ std::deque          & TBD        &  TBD   & TBD      & TBD\\
 ## On std::deque
 
 
-
----
-
-# Applied BigO notation on container
-
----
-
-# Explaining logarithm complexity on std::map
-
-
 # Lessons learned
 Think before you choose a container, because it can have tremendous impact on performance. 
 As well you can cause unintended memory deallocation/allocation.
 
 
 # links
-https://www.geeksforgeeks.org/cpp/where-to-use-a-particular-stl-container-cpp/
+[\textcolor{blue}{Where to use particular container}](https://www.geeksforgeeks.org/cpp/where-to-use-a-particular-stl-container-cpp/)
+
 
