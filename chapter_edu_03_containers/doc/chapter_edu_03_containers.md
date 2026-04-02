@@ -257,14 +257,17 @@ std::deque          & O(1)            & O(N)    & O(N) or O(1)      & O(N) or O(
 
 # Demonstration
 
-## On std::list
-## On std::vector
-## On std::deque
 
 
 # Lessons learned
 Think before you choose a container, because it can have tremendous impact on performance. 
 As well you can cause unintended memory deallocation/allocation.
+
+ - Do I need to add elements frequently?
+ - Do I need to remove elements frequently?
+ - Do I need to add elements in the middle ?
+ - Do I need to have continuous memory?
+ - etc..
 
 
 # links
