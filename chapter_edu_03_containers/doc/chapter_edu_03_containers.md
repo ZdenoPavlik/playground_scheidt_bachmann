@@ -74,6 +74,15 @@ Class has several function, that are used when we alter lifecycle of class (eith
 # Lessons learned from previous lesson (Rule of 5)
 ## Examples
 
+```cpp
+    NamedClass var1{"var1"};
+    
+    NamedClass var2{var1};             // Calling copy constructor
+    NamedClass var3 = std::move(var1); // Calling move constructor
+
+    var1 = var2;            // "Calling copy assignment"
+    var3 = std::move(var1);  // "Calling move assignment"
+```
 
 ---
 
