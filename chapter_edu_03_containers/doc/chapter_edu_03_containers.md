@@ -269,8 +269,15 @@ As well you can cause unintended memory deallocation/allocation.
  - Do I need to have continuous memory?
  - etc..
 
+# How to choose (cheat-sheet)
 
-# links
+::: {.center}
+![Choosing appropriate container](images/Sequence-and-Unordered-Containers-in-C-STL.png){ height=250px }
+:::
+
+# Links
 [\textcolor{blue}{Where to use particular container}](https://www.geeksforgeeks.org/cpp/where-to-use-a-particular-stl-container-cpp/)
+
+ Link to image from previous slide
 
 
