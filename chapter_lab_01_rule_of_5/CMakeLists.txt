@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.28)
+#cmake_minimum_required(VERSION 3.28)
 set(APPNAME ${SUBDIR}) #Appname is the name of subdirectory
-set (CMAKE_CXX_STANDARD 26)
+#set (CMAKE_CXX_STANDARD 26)
 
 set (SOURCES
     src/main.cpp

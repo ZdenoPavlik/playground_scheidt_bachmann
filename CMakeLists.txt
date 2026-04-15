@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 4.0)
 project("LinuxPlayground"  LANGUAGES CXX)
+set (CMAKE_CXX_STANDARD 26)
 
 
 # Define the prefix to search for
