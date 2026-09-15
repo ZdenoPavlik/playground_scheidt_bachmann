@@ -61,6 +61,7 @@ set (TESTS
     tst/test_01_simple.cpp
     tst/test_02_fixture.cpp
     tst/test_03_parametrized.cpp
+    tst/test_04_additional.cpp
 )
 
 add_executable(${test_binary_name} ${TESTS})

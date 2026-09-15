@@ -1,51 +1,61 @@
 {
-	"timestamp": "2026-09-15T07:55:14Z",
+	"timestamp": "2026-09-15T11:02:23Z",
 	"path": "B",
 	"files_reviewed": [
+		".aiteam/project-context.md",
 		".aiteam/implementation-report.json",
+		".aiteam/review-report.json",
+		".aiteam/test-report.json",
 		"CMakeLists.txt",
+		"README.md",
 		"chapter_unittests_01_intro/CMakeLists.txt",
+		"chapter_unittests_01_intro/tst/test_01_simple.cpp",
+		"chapter_unittests_01_intro/tst/test_02_fixture.cpp",
 		"chapter_unittests_01_intro/tst/test_03_parametrized.cpp",
-		"chapter_unittests_01_intro/tst/unit_test_02.cpp"
+		"chapter_unittests_01_intro/tst/test_04_additional.cpp"
 	],
 	"changed_files_reviewed": [
 		"chapter_unittests_01_intro/tst/test_03_parametrized.cpp",
-		".aiteam/project-context.md",
-		".aiteam/implementation-report.json"
+		"chapter_unittests_01_intro/tst/test_04_additional.cpp",
+		"chapter_unittests_01_intro/CMakeLists.txt",
+		".aiteam/implementation-report.json",
+		".aiteam/project-context.md"
 	],
-	"coverage_assessment": "Changed behavior is the GoogleTest value-parameterized test fixture, instantiation macro order, and assertion expectation in test_03_parametrized.cpp. Existing chapter_unittests_01_intro_tests coverage is sufficient because the focused executable compiles the TEST_P fixture and the filtered GoogleTest run executes all four intended parameter values. No new tests were needed because this change only fixes the test implementation itself.",
+	"coverage_assessment": "The changed behavior is GoogleTest test coverage: a TEST_P fixture and INSTANTIATE_TEST_SUITE_P value list in chapter_unittests_01_intro/tst/test_03_parametrized.cpp, plus CMake wiring that includes tst/test_04_additional.cpp in the chapter test executable. The necessary proof is compile validation, direct filtered execution of all generated parameterized cases, and chapter CTest execution. No additional Tester-authored tests were needed because the changed artifacts are test implementations and all generated cases are observable through the test binary.",
 	"tests_changed": [],
 	"commands": [
 		"git status --short",
-		"git diff -- chapter_unittests_01_intro/tst/test_03_parametrized.cpp chapter_unittests_01_intro/CMakeLists.txt chapter_unittests_01_intro/tst/unit_test_02.cpp .aiteam/project-context.md .aiteam/implementation-report.json",
-		"git diff --name-only",
+		"git diff -- chapter_unittests_01_intro/tst/test_03_parametrized.cpp chapter_unittests_01_intro/CMakeLists.txt .aiteam/implementation-report.json .aiteam/project-context.md",
 		"cmake --build build --target chapter_unittests_01_intro_tests --parallel",
+		".\\build\\chapter_unittests_01_intro\\chapter_unittests_01_intro_tests.exe --gtest_filter=Addition/CalculatorTest_03.addition_positive/* --gtest_color=no",
 		"ctest --test-dir build/chapter_unittests_01_intro -R chapter_unittests_01_intro_tests --output-on-failure -V",
-		"& .\\build\\chapter_unittests_01_intro\\chapter_unittests_01_intro_tests.exe --gtest_filter=Addition/CalculatorTest_03.addition_positive/* --gtest_color=no",
-		"& .\\build\\chapter_unittests_01_intro\\chapter_unittests_01_intro_tests.exe --gtest_list_tests --gtest_filter=Addition/CalculatorTest_03.addition_positive/*",
 		"cmake --build build --parallel",
-		"ctest --test-dir build --output-on-failure",
-		"Get-ChildItem -Path .\\build -Filter CTestTestfile.cmake -Recurse | Select-Object -ExpandProperty FullName",
-		"ctest --test-dir <each discovered non-root CTest directory> --output-on-failure"
+		"ctest --test-dir build/chapter_00 --output-on-failure",
+		"ctest --test-dir build/chapter_lab_01_rule_of_5 --output-on-failure",
+		"ctest --test-dir build/chapter_unittests_01_intro --output-on-failure",
+		"ctest --test-dir build/chapter_unittests_02_mocks --output-on-failure",
+		".\\build\\chapter_unittests_01_intro\\chapter_unittests_01_intro_tests.exe --gtest_list_tests --gtest_filter=Addition/CalculatorTest_03.addition_positive/* --gtest_color=no",
+		".\\build\\chapter_unittests_01_intro\\chapter_unittests_01_intro_tests.exe --gtest_filter=Addition/CalculatorTest_03.addition_positive/* --gtest_color=no"
 	],
 	"results": {
-		"passed": 4,
+		"passed": 11,
 		"failed": 0,
 		"skipped": 0,
-		"focused_build": "chapter_unittests_01_intro_tests target built successfully; ninja reported no work to do.",
-		"focused_ctest": "build/chapter_unittests_01_intro passed 1/1 CTest test, with 20 GoogleTest tests passing and 0 failures.",
-		"parameterized_cases": "Filtered TEST_P run passed 4/4 cases: Addition/CalculatorTest_03.addition_positive/0 GetParam() = 2, /1 GetParam() = 4, /2 GetParam() = 6, /3 GetParam() = 8.",
-		"broader_build": "cmake --build build --parallel passed; ninja reported no work to do.",
-		"root_ctest": "ctest --test-dir build --output-on-failure exited 0 but discovered no tests at the root build directory.",
-		"discovered_ctest_dirs": "build/chapter_00 1 passed 0 failed; build/chapter_lab_01_rule_of_5 1 passed 0 failed; build/chapter_unittests_01_intro 1 passed 0 failed; build/chapter_unittests_02_mocks 1 passed 0 failed. Dependency directories build/_deps/googletest-build, build/_deps/googletest-build/googlemock, and build/_deps/googletest-build/googletest contained no tests."
+		"git_status": "Modified: .aiteam/implementation-report.json, .aiteam/test-report.json, chapter_unittests_01_intro/CMakeLists.txt, chapter_unittests_01_intro/tst/test_03_parametrized.cpp. Untracked: chapter_unittests_01_intro/tst/test_04_additional.cpp.",
+		"diff_review": "Current diff shows test_03_parametrized.cpp replaced <memory> with <iostream>, uses auto number = GetParam(), and instantiates integer values 2, 4, 6, 8, 10, 11, 12. chapter_unittests_01_intro/CMakeLists.txt adds tst/test_04_additional.cpp to TESTS. .aiteam/implementation-report.json updates the implementation metadata; .aiteam/project-context.md has no current diff.",
+		"focused_build": "cmake --build build --target chapter_unittests_01_intro_tests --parallel passed.",
+		"parameterized_list": "Direct --gtest_list_tests showed 7 generated cases: addition_positive/0 GetParam() = 2, /1 = 4, /2 = 6, /3 = 8, /4 = 10, /5 = 11, /6 = 12.",
+		"parameterized_direct_run": "Filtered direct run passed 7/7 tests from Addition/CalculatorTest_03 with 0 failures.",
+		"focused_ctest": "ctest --test-dir build/chapter_unittests_01_intro -R chapter_unittests_01_intro_tests --output-on-failure -V passed 1/1 CTest test.",
+		"broader_build": "cmake --build build --parallel passed.",
+		"broader_ctest": "Rerun discovered chapter CTest directories passed with 100% passing: chapter_00, chapter_lab_01_rule_of_5, chapter_unittests_01_intro, and chapter_unittests_02_mocks."
 	},
 	"ci": {
 		"status": "not-run",
 		"url": ""
 	},
 	"failures": [],
-	"user_edit_preservation": "git diff showed no changes in chapter_unittests_01_intro/tst/unit_test_02.cpp, confirming those user edits were not overwritten by the current parameterized-test change.",
 	"residual_risk": "low",
-	"residual_risk_detail": "Root CTest discovery finds no tests, so broad regression evidence relies on running each generated non-root CTest directory. TeamCity CI was not requested or run.",
-	"summary": "Path B validation passed for the parameterized GoogleTest fix: changed files were reviewed, focused build and tests passed, all four TEST_P values executed, broader build passed, and discovered subproject CTest suites passed."
-}
+	"residual_risk_detail": "TeamCity CI was not requested or run. Root build-level CTest discovery is not represented in this report; regression evidence comes from full build plus the generated chapter CTest directories. The workspace still contains uncommitted/untracked batch changes.",
+	"summary": "Path B validation passed: reviewed the changed parameterized test, additional test, and CMake wiring; confirmed no Tester-authored test edits were needed; built the focused test target; directly ran all 7 generated parameterized cases; and passed the broader discovered CTest suites."
+	}
