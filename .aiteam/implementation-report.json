@@ -1,30 +1,33 @@
 {
-  "timestamp": "2026-09-15T07:07:54Z",
+  "timestamp": "2026-09-15T07:52:48.5540206Z",
   "files_changed": [
-    "chapter_unittests_01_intro/tst/unit_test_02.cpp"
-  ],
-  "files_created": [
+    "chapter_unittests_01_intro/tst/test_03_parametrized.cpp",
     ".aiteam/project-context.md",
     ".aiteam/implementation-report.json"
   ],
+  "files_created": [],
   "decisions": [
     {
-      "topic": "GoogleTest fixture validity",
-      "reason": "Updated CalculatorTest_02 to derive from testing::Test so TEST_F uses a valid fixture type and compiles correctly."
+      "topic": "TEST_P fixture correctness",
+      "reason": "Kept TEST_P bound to CalculatorTest_03 (a TestWithParam<int> fixture), matching GoogleTest requirements for value-parameterized tests."
     },
     {
-      "topic": "Per-test Calculator lifecycle",
-      "reason": "Moved Calculator creation to SetUp() and cleanup to TearDown() using a fixture-owned std::unique_ptr to ensure isolated per-test state."
+      "topic": "INSTANTIATE_TEST_SUITE_P argument order",
+      "reason": "Swapped arguments to the correct order: instantiation prefix first, then fixture type, then parameter generator."
     },
     {
-      "topic": "Behavior preservation",
-      "reason": "Kept all existing assertions and test inputs unchanged; only switched from local Calculator variables to fixture member access."
+      "topic": "Expectation semantics for provided values",
+      "reason": "Changed expected value from constant 4 to number + number so all provided parameters {2,4,6,8} produce meaningful passing checks for add()."
+    },
+    {
+      "topic": "CMake scope",
+      "reason": "No CMake update was necessary because tst/test_03_parametrized.cpp was already included in chapter_unittests_01_intro test target."
     }
   ],
   "git_status": "unstaged — ready for Releaser to commit",
   "risks": [
-    "No functional risk identified; change is limited to fixture lifecycle wiring in one test file."
+    "Low risk: changes are limited to one educational test file plus .aiteam metadata; focused build and chapter CTest passed."
   ],
   "plan_followed": true,
-  "summary": "Implemented SetUp/TearDown-based GoogleTest fixture in unit_test_02.cpp and verified clean rebuild and passing tests."
+  "summary": "Fixed parameterized GoogleTest macro usage and assertions in test_03_parametrized.cpp; verified chapter_unittests_01_intro_tests builds and all 20 tests pass."
 }

@@ -1,38 +1,51 @@
 {
-	"timestamp": "2026-09-15T07:09:34Z",
+	"timestamp": "2026-09-15T07:55:14Z",
 	"path": "B",
 	"files_reviewed": [
 		".aiteam/implementation-report.json",
-		".aiteam/project-context.md",
 		"CMakeLists.txt",
 		"chapter_unittests_01_intro/CMakeLists.txt",
-		"chapter_unittests_01_intro/src/calculator.hpp",
-		"chapter_unittests_01_intro/tst/unit_test_01.cpp",
+		"chapter_unittests_01_intro/tst/test_03_parametrized.cpp",
 		"chapter_unittests_01_intro/tst/unit_test_02.cpp"
 	],
 	"changed_files_reviewed": [
-		"chapter_unittests_01_intro/tst/unit_test_02.cpp"
+		"chapter_unittests_01_intro/tst/test_03_parametrized.cpp",
+		".aiteam/project-context.md",
+		".aiteam/implementation-report.json"
 	],
-	"coverage_assessment": "Existing assertions in unit_test_02.cpp still cover Calculator add/sub/mul/div happy and negative paths; the changed behavior is fixture lifecycle wiring, verified by successful TEST_F compilation and execution. No additional tests were needed because the behavior under test remained equivalent and the change is confined to GoogleTest fixture setup/teardown structure.",
+	"coverage_assessment": "Changed behavior is the GoogleTest value-parameterized test fixture, instantiation macro order, and assertion expectation in test_03_parametrized.cpp. Existing chapter_unittests_01_intro_tests coverage is sufficient because the focused executable compiles the TEST_P fixture and the filtered GoogleTest run executes all four intended parameter values. No new tests were needed because this change only fixes the test implementation itself.",
 	"tests_changed": [],
 	"commands": [
-		"git status --short; git diff -- chapter_unittests_01_intro/tst/unit_test_02.cpp; ctest --test-dir build -N",
-		"cmake --build build --target chapter_unittests_01_intro_tests --parallel; ctest --test-dir build/chapter_unittests_01_intro --output-on-failure -V",
-		"cmake --build build --parallel; ctest --test-dir build --output-on-failure"
+		"git status --short",
+		"git diff -- chapter_unittests_01_intro/tst/test_03_parametrized.cpp chapter_unittests_01_intro/CMakeLists.txt chapter_unittests_01_intro/tst/unit_test_02.cpp .aiteam/project-context.md .aiteam/implementation-report.json",
+		"git diff --name-only",
+		"cmake --build build --target chapter_unittests_01_intro_tests --parallel",
+		"ctest --test-dir build/chapter_unittests_01_intro -R chapter_unittests_01_intro_tests --output-on-failure -V",
+		"& .\\build\\chapter_unittests_01_intro\\chapter_unittests_01_intro_tests.exe --gtest_filter=Addition/CalculatorTest_03.addition_positive/* --gtest_color=no",
+		"& .\\build\\chapter_unittests_01_intro\\chapter_unittests_01_intro_tests.exe --gtest_list_tests --gtest_filter=Addition/CalculatorTest_03.addition_positive/*",
+		"cmake --build build --parallel",
+		"ctest --test-dir build --output-on-failure",
+		"Get-ChildItem -Path .\\build -Filter CTestTestfile.cmake -Recurse | Select-Object -ExpandProperty FullName",
+		"ctest --test-dir <each discovered non-root CTest directory> --output-on-failure"
 	],
 	"results": {
-		"passed": 16,
+		"passed": 4,
 		"failed": 0,
 		"skipped": 0,
-		"focused": "chapter_unittests_01_intro_tests built successfully; build/chapter_unittests_01_intro CTest passed 1/1 test case with 16/16 GoogleTest tests passing.",
-		"broader": "Full CMake build passed with 22/22 targets linked. Root CTest completed successfully but discovered no tests; post-build test hooks reported chapter_00_tests 1/1, chapter_unittests_02_mocks_tests 1/1, and chapter_lab_01_rule_of_5_tests 4/4 passing."
+		"focused_build": "chapter_unittests_01_intro_tests target built successfully; ninja reported no work to do.",
+		"focused_ctest": "build/chapter_unittests_01_intro passed 1/1 CTest test, with 20 GoogleTest tests passing and 0 failures.",
+		"parameterized_cases": "Filtered TEST_P run passed 4/4 cases: Addition/CalculatorTest_03.addition_positive/0 GetParam() = 2, /1 GetParam() = 4, /2 GetParam() = 6, /3 GetParam() = 8.",
+		"broader_build": "cmake --build build --parallel passed; ninja reported no work to do.",
+		"root_ctest": "ctest --test-dir build --output-on-failure exited 0 but discovered no tests at the root build directory.",
+		"discovered_ctest_dirs": "build/chapter_00 1 passed 0 failed; build/chapter_lab_01_rule_of_5 1 passed 0 failed; build/chapter_unittests_01_intro 1 passed 0 failed; build/chapter_unittests_02_mocks 1 passed 0 failed. Dependency directories build/_deps/googletest-build, build/_deps/googletest-build/googlemock, and build/_deps/googletest-build/googletest contained no tests."
 	},
 	"ci": {
 		"status": "not-run",
 		"url": ""
 	},
 	"failures": [],
+	"user_edit_preservation": "git diff showed no changes in chapter_unittests_01_intro/tst/unit_test_02.cpp, confirming those user edits were not overwritten by the current parameterized-test change.",
 	"residual_risk": "low",
-	"residual_risk_detail": "Root build CTest does not discover tests, so broad regression evidence comes from the full build's post-build test hooks plus the focused chapter CTest directory. No TeamCity validation was requested or run.",
-	"summary": "Path B validation passed: reviewed the changed TEST_F fixture file, confirmed coverage was sufficient, verified SetUp/TearDown fixture behavior compiles, and focused chapter tests pass."
+	"residual_risk_detail": "Root CTest discovery finds no tests, so broad regression evidence relies on running each generated non-root CTest directory. TeamCity CI was not requested or run.",
+	"summary": "Path B validation passed for the parameterized GoogleTest fix: changed files were reviewed, focused build and tests passed, all four TEST_P values executed, broader build passed, and discovered subproject CTest suites passed."
 }

@@ -13,10 +13,11 @@ public:
 TEST_P(CalculatorTest_03, addition_positive)
 {
 	int number = GetParam(); // Retrieve the current parameter value
-	EXPECT_EQ(calc.add(number, number), 4);
+	std::cout << "Testing sum of " << number << " and " << number << std::endl;
+	EXPECT_EQ(calc.add(number, number), number + number);
 }
 
-INSTANTIATE_TEST_SUITE_P(CalculatorTest_03, // Prefix name for this instantiation
-	Addition,								// Test fixture class name
-	::testing::Values(2, 4, 6, 8)			// List of parameters to test
+INSTANTIATE_TEST_SUITE_P(Addition,	   // Prefix name for this instantiation
+	CalculatorTest_03,				   // Test fixture class name
+	::testing::Values(2, 4, 6, 8, 2.3) // List of parameters to test
 );
