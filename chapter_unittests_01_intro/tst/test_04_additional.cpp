@@ -21,6 +21,9 @@ TEST(CalculatorTest, Additional)
 	EXPECT_GT(calc.add(2, 3), 1); // Greater than
 	EXPECT_LT(calc.add(2, 3), 6); // Less than
 
+	EXPECT_STREQ("One", "One");
+	EXPECT_STRCASEEQ("One", "ONE");
+
 	EXPECT_ANY_THROW({ throw std::exception(); });
 	EXPECT_DEATH(segfault(), "Memory access violation");
 }
