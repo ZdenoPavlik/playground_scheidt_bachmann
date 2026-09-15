@@ -9,7 +9,7 @@ set (SOURCES
 set(HEADERS
 )
 
-project(${APPNAME}  LANGUAGES CXX)
+project(${APPNAME} LANGUAGES CXX)
 add_executable(${APPNAME} ${HEADERS} ${SOURCES} )
 
 # Windows specific settings
@@ -28,7 +28,9 @@ PUBLIC
   ${CMAKE_CURRENT_LIST_DIR}
 )
 
-#testing
+
+
+#testing section
 include(FetchContent)
 
 # Fetch GoogleTest
@@ -39,29 +41,29 @@ FetchContent_Declare(
 # Make available
 FetchContent_MakeAvailable(googletest)
 
+
 set(test_binary_name ${APPNAME}_tests)
-#find_library(GTEST_LIB gtest REQUIRED)
+#find_library(GTEST_LIB googletest REQUIRED)
 #find_library(GTEST_MAIN gtest_main REQUIRED)
 #find_library(GMOCK_LIB gmock REQUIRED)
 find_package(Threads REQUIRED)
 
-if(MSVC)
+#if(WIN32)
+if (MSVC)
     message(STATUS "Adding googletest as /MTd")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
-else()
-    
 endif()
 
 # enable testing functionality
 enable_testing()
 
-set(TEST_SRC
-  tst/sw.cpp 
-  tst/swCopyCtorMissing.cpp
-  tst/swCopyCtorProper.cpp
+set (TESTS
+    tst/test_01_simple.cpp
+    tst/test_02_fixture.cpp
+    tst/test_03_parametrized.cpp
 )
 
-add_executable(${test_binary_name} ${TEST_SRC})
+add_executable(${test_binary_name} ${TESTS})
 target_link_libraries(${test_binary_name}
     PRIVATE
         gtest 

@@ -8,7 +8,7 @@
 
 // cls ; cmake --build build --parallel ; .\build\chapter_edu_03_containers\chapter_edu_03_containers.exe
 
-std::vector<NamedClass> container;
+std::deque<NamedClass> container;
 const uint16_t numberOfElements{10000};
 // const uint16_t numberOfElements{32768}; // 2 na 15, //32768
 
@@ -30,7 +30,7 @@ void iterateOverElementsInContainer()
 
 // Primary template (generic implementation for random-access containers)
 template <typename T>
-void randomAccessLastElement(T& cont)
+void randomAccessLastElement(T& cont) // Access second to last element
 {
 	const auto elementIndex{cont.size() - 1};
 
@@ -81,6 +81,11 @@ void addElementToTheMiddle(T& cont)
 	}
 }
 
+NamedClass createMeClass()
+{
+	return NamedClass{"Class from function"};
+}
+
 int main()
 {
 	// VECTOR
@@ -88,9 +93,7 @@ int main()
 	//  #1 Vector has to grow. Use .reserve function
 	// container.at(2).whoAmI();
 
-	// LIST
-
-	NamedClass obj1{"Object 1"};
+	/*NamedClass obj1{"Object 1"};
 	container.push_back(obj1);
 
 	std::cout << "---------------" << std::endl;
@@ -100,6 +103,8 @@ int main()
 	std::cout << "---------------" << std::endl;
 	NamedClass obj3{"Object 3"};
 	container.push_back(obj3);
+
+	container.emplace_back("Object 4");*/
 
 	std::cout << "---------------" << std::endl;
 	Benchmark benchmark;
