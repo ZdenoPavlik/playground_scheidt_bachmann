@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <iostream>
 
-#include "calculator.hpp"
+#include "Calculator.hpp"
 
 class CalculatorTest_03 : public ::testing::TestWithParam<int>
 {

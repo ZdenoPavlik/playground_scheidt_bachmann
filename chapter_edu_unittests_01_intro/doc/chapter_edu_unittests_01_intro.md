@@ -180,9 +180,23 @@ Performance tests evaluate how a system performs under a **particular workload**
 # Different types of (automated) testing
 
 Sources: \
-https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
+https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing \
 https://www.geeksforgeeks.org/software-testing/types-software-testing/
 
 --- 
 
+... enough of theory
+
+---
+
 # Unit testing
+
+I will be using GoogleTest for unit testing in this tutorial. \
+https://github.com/google/googletest \
+https://google.github.io/googletest/primer.html \
+https://google.github.io/googletest/
+
+---
+
+# 
+

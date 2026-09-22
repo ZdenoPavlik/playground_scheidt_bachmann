@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <memory>
 
-#include "calculator.hpp"
+#include "Calculator.hpp"
 
 class CalculatorTest_02 : public testing::Test
 {

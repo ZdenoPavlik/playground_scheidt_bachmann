@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "calculator.hpp"
+#include "Calculator.hpp"
 
 TEST(CalculatorTest, addition_positive)
 {
