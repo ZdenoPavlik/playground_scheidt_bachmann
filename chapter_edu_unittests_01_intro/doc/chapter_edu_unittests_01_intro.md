@@ -189,6 +189,15 @@ https://www.geeksforgeeks.org/software-testing/types-software-testing/
 
 ---
 
+# What are unit tests?
+- Isolated test cases (functions) validating classes, methods and functions.
+- Quick to execute (seconds).
+- Intended to use regularly (at least before merging to develop branch).
+- Advantage is that we can test edge cases in a simple way.
+- Isolated from production code, usually located in `test` directory.
+
+---
+
 # Unit testing
 
 I will be using GoogleTest for unit testing in this tutorial. \
@@ -196,7 +205,63 @@ https://github.com/google/googletest \
 https://google.github.io/googletest/primer.html \
 https://google.github.io/googletest/
 
+
 ---
 
-# 
+# Example
+```cpp
+TEST(PersonSalaryCalculatorTest, simpleCreation)
+{
+	PersonSalaryCalculator person("Bob", 2000);
+
+	EXPECT_EQ(person.getName(), "Bob"); // Case sensitive, simple to use
+	EXPECT_STRNE(person.getName().c_str(), "");
+}
+
+TEST(PersonSalaryCalculatorTest, simpleSalary)
+{
+	PersonSalaryCalculator person1("Bob", 1000);
+	EXPECT_EQ(person1.calculateFinalSalary(), 750);
+
+	PersonSalaryCalculator person2("Bob", 2000);
+	EXPECT_EQ(person2.calculateFinalSalary(), 1500);
+}
+```
+
+---
+
+# Additional macros
+
+```cpp
+EXPECT_EQ(1, 1);
+EXPECT_TRUE((1+1 == 2);
+
+EXPECT_GT((1+1)), 1); // Greater than
+EXPECT_LT((1+1)), 6); // Less than
+
+EXPECT_STREQ("One", "One");
+EXPECT_STRCASEEQ("One", "ONE");
+
+EXPECT_ANY_THROW({ throw std::exception(); });
+EXPECT_DEATH(segfault(), "Memory access violation");
+
+EXPECT_THROW(throwsException(), std::runtime_error);
+EXPECT_ANY_THROW(throwsException());
+EXPECT_NO_THROW(noThrow());
+```
+---
+
+# EXPECT vs ASSERT
+
+```cpp
+EXPECT_EQ(1, 1);
+```
+vs.
+```cpp
+ASSERT_EQ(1, 1);
+```
+
+`ASSERT_*` macros are similar to `EXPECT_*` macros, but they will **abort** the current test if the assertion fails.
+
+
 
