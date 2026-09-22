@@ -105,8 +105,8 @@ Unit tests are very low level and close to the source of an application. They co
 Smoke tests are basic tests that check the **basic functionality** of an application. They are meant to be quick to execute, and their goal is to give you the assurance that the major features of your system are working as expected.
 Smoke tests can be useful right after a new build is made to decide whether or not you can run more expensive tests, or right after a deployment to make sure that they application is running properly in the newly deployed environment. 
 
+**Fun fact:** Naming comes from hardware testing, where a "smoke test" was a quick check to see if a device would power on without emitting smoke.
 
-Fun fact: Naming comes from hardware testing, where a "smoke test" was a quick check to see if a device would power on without emitting smoke.
 ---
 
 # Different types of (automated) testing

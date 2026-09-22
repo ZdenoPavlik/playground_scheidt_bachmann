@@ -1,0 +1,455 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  ignorenonframetext,
+  american,
+  t,
+  aspectratio=169]{beamer}
+\newif\ifbibliography
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% remove section numbering
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{section title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{subsection title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\usefonttheme{serif} % use mainfont rather than sansfont for slide text
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{Segoe UI Emoji}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off]{babel}
+\else
+\usepackage[bidi=default,shorthands=off]{babel}
+\fi
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Segoe UI Emoji}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  pdftitle={Unit tests 01 - Introduction},
+  pdfauthor={Zdenko Pavlik},
+  pdflang={en-US},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{\texorpdfstring{Unit tests 01 -
+Introduction}{Unit tests 01 - Introduction}}
+\author{\texorpdfstring{Zdenko Pavlik}{Zdenko Pavlik}}
+\date{}
+\institute{Scheidt\&Bachmann Slovakia s.r.o.}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}{Unit tests 01 - Introduction}
+\protect\phantomsection\label{unit-tests-01---introduction}
+\begin{center}
+... done with support of
+\end{center}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,height=0.66667in,keepaspectratio,alt={scheidt\&bachmann}]{./media-52028fc142de6684/images/sb_logo.png}
+\caption{scheidt\&bachmann}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Agenda}
+\protect\phantomsection\label{agenda}
+\begin{itemize}
+\tightlist
+\item
+  Why tests are important
+\item
+  Different types of testing
+\item
+  Importance of unit testing
+\item
+  How to write unit tests
+\item
+  Best practices for unit testing
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Why tests are important}
+\protect\phantomsection\label{why-tests-are-important}
+\begin{itemize}
+\tightlist
+\item
+  Risk Mitigation
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Testing helps identify defects and failures early in the development
+    process when they are less expensive to fix. This reduces project
+    risks related to quality, security, performance, etc.
+  \end{itemize}
+\item
+  Confidence
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Executing a well–planned software test strategy provides confidence
+    that the software works as intended before its release.
+  \end{itemize}
+\item
+  Compliance
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Testing can ensure that software adheres to standards, regulations,
+    and compliance requirements. This is especially critical for
+    safety–critical systems.
+  \end{itemize}
+\item
+  User Satisfaction
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Rigorous testing from a user perspective can verify usability,
+    functionality, and compatibility. This increases customer/user
+    satisfaction and reduces negative impacts to an organization’s
+    reputation or finances from poor quality products.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Why tests are important}
+\protect\phantomsection\label{why-tests-are-important-1}
+\begin{itemize}
+\tightlist
+\item
+  Optimization
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Testing provides vital feedback that can be used to continuously
+    improve software quality, user experience, security, performance and
+    other product attributes.
+  \end{itemize}
+\item
+  Cost Savings
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Investing in testing activities reduces downstream costs related to
+    defects found post–release. It is much cheaper to find and fix bugs
+    earlier in the development cycle.
+  \end{itemize}
+\end{itemize}
+
+… and many more reasons
+\end{frame}
+
+\begin{frame}{Why tests are important (SW developer perspective)}
+\protect\phantomsection\label{why-tests-are-important-sw-developer-perspective}
+\begin{itemize}
+\tightlist
+\item
+  Enable us testing corner case scenarios
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Testing enables us to validate that our code behaves correctly under
+    various conditions, including edge cases.
+  \end{itemize}
+\item
+  Ensure code stability
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Testing helps maintain code stability by catching regressions and
+    unintended side effects early in the development process.
+  \end{itemize}
+\item
+  Facilitate refactoring and code maintenance
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Testing allows developers to confidently refactor and maintain code,
+    knowing that existing functionality is protected by a suite of
+    automated tests.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Why tests are important (SW developer perspective)}
+\protect\phantomsection\label{why-tests-are-important-sw-developer-perspective-1}
+\begin{itemize}
+\tightlist
+\item
+  They are instant!
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Unit tests can be executed quickly (often in seconds or minutes),
+    providing immediate feedback to developers about the correctness of
+    their code.
+  \end{itemize}
+\item
+  \textbf{Disclaimer}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    They took time to write and maintain. Often it is 2x time of
+    development. But AI can help significantly!
+  \item
+    Unit tests are not a silver bullet; they complement other testing
+    types and practices to ensure overall software quality.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Different types of (automated) testing}
+\protect\phantomsection\label{different-types-of-automated-testing}
+\emph{Ordered from least complex to most complex}.
+\end{frame}
+
+\begin{frame}[fragile]{Different types of (automated) testing}
+\protect\phantomsection\label{different-types-of-automated-testing-1}
+\textbf{Unit tests}\\
+\textbf{Written by:} Developers\\
+\textbf{Target:} Classes\\
+\textbf{Purpose:} Test individual units of code in isolation\\
+\textbf{Complexity:} Low\\
+\textbf{Example:} Test files that are part of repository,
+i.e.~\texttt{EventHandlerTest.cpp}\\
+Unit tests are very low level and close to the source of an application.
+They consist in \textbf{testing individual methods and functions} of the
+classes, components, or modules used by your software. Unit tests are
+generally quite cheap to automate and can run very quickly by a
+continuous integration server.
+\end{frame}
+
+\begin{frame}{Different types of (automated) testing}
+\protect\phantomsection\label{different-types-of-automated-testing-2}
+\textbf{Smoke testing}\\
+\textbf{Written by:} Developers or QA engineers\\
+\textbf{Target:} Application\\
+\textbf{Purpose:} Check the basic functionality of an application\\
+\textbf{Complexity:} Low\\
+Smoke tests are basic tests that check the \textbf{basic functionality}
+of an application. They are meant to be quick to execute, and their goal
+is to give you the assurance that the major features of your system are
+working as expected. Smoke tests can be useful right after a new build
+is made to decide whether or not you can run more expensive tests, or
+right after a deployment to make sure that they application is running
+properly in the newly deployed environment.
+
+\textbf{Fun fact:} Naming comes from hardware testing, where a “smoke
+test” was a quick check to see if a device would power on without
+emitting smoke.
+\end{frame}
+
+\begin{frame}{Different types of (automated) testing}
+\protect\phantomsection\label{different-types-of-automated-testing-3}
+\textbf{Fuzz testing}\\
+\textbf{Written by:} Developers or QA engineers\\
+\textbf{Target:} Application or Classes\\
+\textbf{Purpose:} Identify security vulnerabilities and robustness
+issues by providing invalid, unexpected, or random data as inputs\\
+\textbf{Complexity:} Medium\\
+Fuzz testing, or fuzzing, is a type of automated testing that involves
+\textbf{providing invalid, unexpected, or random data as inputs} to a
+computer program. The program is then monitored for crashes, memory
+leaks, or other unexpected behaviors. Fuzz testing is particularly
+useful for identifying security vulnerabilities and robustness issues in
+software.
+\end{frame}
+
+\begin{frame}{Different types of (automated) testing}
+\protect\phantomsection\label{different-types-of-automated-testing-4}
+\textbf{Integration tests}\\
+\textbf{Written by:} Developers\\
+\textbf{Target:} Modules or services\\
+\textbf{Purpose:} Test interactions between different modules or
+services\\
+\textbf{Complexity:} Medium\\
+Integration tests verify that different \textbf{modules or services}
+used by your application work well together. For example, it can be
+testing the interaction with the database or making sure that
+microservices work together as expected. These types of tests are more
+expensive to run as they require multiple parts of the application to be
+up and running.
+\end{frame}
+
+\begin{frame}{Different types of (automated) testing}
+\protect\phantomsection\label{different-types-of-automated-testing-5}
+\textbf{Functional tests}\\
+\textbf{Written by:} Developers or QA engineers\\
+\textbf{Target:} Application\\
+\textbf{Purpose:} Test the application against business requirements\\
+\textbf{Complexity:} Medium\\
+Functional tests focus on the \textbf{business requirements} of an
+application. They only verify the output of an action and do not check
+the intermediate states of the system when performing that action. There
+is sometimes a confusion between integration tests and functional tests
+as they both require multiple components to interact with each other.
+The difference is that an integration test may simply verify that you
+can query the database while a functional test would expect to get a
+specific value from the database as defined by the product requirements.
+\end{frame}
+
+\begin{frame}{Different types of (automated) testing}
+\protect\phantomsection\label{different-types-of-automated-testing-6}
+\textbf{End-to-end tests}\\
+\textbf{Written by:} Developers or QA engineers\\
+\textbf{Target:} Application\\
+\textbf{Purpose:} Test the application from start to finish\\
+\textbf{Complexity:} High\\
+End-to-end testing replicates a \textbf{user behavior} with the software
+in a complete application environment. It verifies that various user
+flows work as expected and can be as simple as loading a web page or
+logging in or much more complex scenarios verifying email notifications,
+online payments, etc… End-to-end tests are very useful, but they’re
+expensive to perform and can be hard to maintain when they’re automated.
+It is recommended to have a few key end-to-end tests and rely more on
+lower level types of testing (unit and integration tests) to be able to
+quickly identify breaking changes.
+\end{frame}
+
+\begin{frame}{Different types of (automated) testing}
+\protect\phantomsection\label{different-types-of-automated-testing-7}
+\textbf{Acceptance testing}\\
+\textbf{Written by:} Developers or QA engineers\\
+\textbf{Target:} Application\\
+\textbf{Purpose:} Verify if a system satisfies business requirements\\
+\textbf{Complexity:} High\\
+Acceptance tests are formal tests that verify if a system satisfies
+\textbf{business requirements}. They require the entire application to
+be running while testing and focus on replicating user behaviors. But
+they can also go further and measure the performance of the system and
+reject changes if certain goals are not met.
+\end{frame}
+
+\begin{frame}{Different types of (automated) testing}
+\protect\phantomsection\label{different-types-of-automated-testing-8}
+\textbf{Performance testing}\\
+\textbf{Written by:} Developers or QA engineers\\
+\textbf{Target:} Application\\
+\textbf{Purpose:} Evaluate how a system performs under a particular
+workload\\
+\textbf{Complexity:} Medium\\
+Performance tests evaluate how a system performs under a
+\textbf{particular workload}. These tests help to measure the
+reliability, speed, scalability, and responsiveness of an application.
+For instance, a performance test can observe response times when
+executing a high number of requests, or determine how a system behaves
+with a significant amount of data. It can determine if an application
+meets performance requirements, locate bottlenecks, measure stability
+during peak traffic, and more.
+\end{frame}
+
+\begin{frame}{Different types of (automated) testing}
+\protect\phantomsection\label{different-types-of-automated-testing-9}
+Sources:\\
+https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
+https://www.geeksforgeeks.org/software-testing/types-software-testing/
+\end{frame}
+
+\begin{frame}{Unit testing}
+\protect\phantomsection\label{unit-testing}
+\end{frame}
+
+\end{document}
