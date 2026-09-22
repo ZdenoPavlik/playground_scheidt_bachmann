@@ -10,6 +10,16 @@ void segfault()
 	*pointer = 5;
 }
 
+void throwsException()
+{
+	throw std::runtime_error("expected failure");
+}
+
+void noThrow()
+{
+	// Does not throw.
+}
+
 TEST(CalculatorTest, Additional)
 {
 	Calculator calc;
@@ -26,4 +36,8 @@ TEST(CalculatorTest, Additional)
 
 	EXPECT_ANY_THROW({ throw std::exception(); });
 	EXPECT_DEATH(segfault(), "Memory access violation");
+
+	EXPECT_THROW(throwsException(), std::runtime_error);
+	EXPECT_ANY_THROW(throwsException());
+	EXPECT_NO_THROW(noThrow());
 }

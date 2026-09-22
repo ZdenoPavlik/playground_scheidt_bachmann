@@ -84,6 +84,6 @@ add_test(NAME ${APPNAME}_tests COMMAND ${test_binary_name})
 #automatically execute unit tests after build
 add_custom_command(TARGET ${test_binary_name}
     POST_BUILD
-    COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure -V
+    COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure -V --schedule-random
     COMMENT "Running unit tests after build..."
 )
