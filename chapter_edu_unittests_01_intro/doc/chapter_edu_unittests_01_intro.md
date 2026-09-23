@@ -185,7 +185,8 @@ https://www.geeksforgeeks.org/software-testing/types-software-testing/
 
 --- 
 
-... enough of theory
+... enough of theory \
+Let's practice unit tests.
 
 ---
 
@@ -205,26 +206,23 @@ https://github.com/google/googletest \
 https://google.github.io/googletest/primer.html \
 https://google.github.io/googletest/
 
-
 ---
 
 # Example
 ```cpp
+PersonSalaryCalculatorTest.cpp
+
 TEST(PersonSalaryCalculatorTest, simpleCreation)
 {
 	PersonSalaryCalculator person("Bob", 2000);
 
 	EXPECT_EQ(person.getName(), "Bob"); // Case sensitive, simple to use
-	EXPECT_STRNE(person.getName().c_str(), "");
 }
 
 TEST(PersonSalaryCalculatorTest, simpleSalary)
 {
 	PersonSalaryCalculator person1("Bob", 1000);
 	EXPECT_EQ(person1.calculateFinalSalary(), 750);
-
-	PersonSalaryCalculator person2("Bob", 2000);
-	EXPECT_EQ(person2.calculateFinalSalary(), 1500);
 }
 ```
 
@@ -234,17 +232,16 @@ TEST(PersonSalaryCalculatorTest, simpleSalary)
 
 ```cpp
 EXPECT_EQ(1, 1);
-EXPECT_TRUE((1+1 == 2);
+EXPECT_TRUE(1+1 == 2);
 
-EXPECT_GT((1+1)), 1); // Greater than
-EXPECT_LT((1+1)), 6); // Less than
+EXPECT_GT((1+1), 1); // Greater than
+EXPECT_LT((1+1), 6); // Less than
 
 EXPECT_STREQ("One", "One");
 EXPECT_STRCASEEQ("One", "ONE");
 
 EXPECT_ANY_THROW({ throw std::exception(); });
 EXPECT_DEATH(segfault(), "Memory access violation");
-
 EXPECT_THROW(throwsException(), std::runtime_error);
 EXPECT_ANY_THROW(throwsException());
 EXPECT_NO_THROW(noThrow());
