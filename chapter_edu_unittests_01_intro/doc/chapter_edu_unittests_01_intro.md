@@ -263,6 +263,10 @@ ASSERT_EQ(1, 1);
 ---
 
 # Demo
+- integrating unit tests into project (and executing)
+- writing unit tests
+- using AI to write unit tests for us
+- coverage report
 
 ---
 
